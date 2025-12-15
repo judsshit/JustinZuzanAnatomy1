@@ -38,7 +38,7 @@ main{ padding:14px; }
         background: rgba(18,25,37,0.35); }
 .figure img{ width:100%; height:auto; display:block; }
 .boxInput{
-  position:absolute; border:1px solid rgba(255,255,255,0.25); background:rgba(0,0,0,0.25);
+  position:absolute; border:1px solid rgba(255,255,255,0.25); background:rgba(0,0,0,0.00);
   color:var(--text); border-radius:6px; padding:2px 6px; font-size:12px; line-height:1.1;
   outline:none;
 }
@@ -391,6 +391,27 @@ hr{ border:0; border-top:1px solid rgba(255,255,255,0.10); margin:12px 0; }
 <script>
 const DATA = {"pages": [{"file": "image1.png", "w": 849, "h": 1046, "boxes": [{"x": 186, "y": 182, "w": 145, "h": 25}, {"x": 352, "y": 198, "w": 146, "h": 44}, {"x": 680, "y": 196, "w": 148, "h": 48}, {"x": 383, "y": 287, "w": 76, "h": 60}, {"x": 717, "y": 287, "w": 132, "h": 21}, {"x": 0, "y": 385, "w": 147, "h": 20}, {"x": 357, "y": 466, "w": 141, "h": 21}, {"x": 717, "y": 513, "w": 132, "h": 20}, {"x": 361, "y": 573, "w": 132, "h": 37}, {"x": 0, "y": 690, "w": 64, "h": 21}, {"x": 396, "y": 711, "w": 63, "h": 21}, {"x": 721, "y": 688, "w": 67, "h": 25}, {"x": 355, "y": 882, "w": 145, "h": 24}, {"x": 697, "y": 911, "w": 145, "h": 24}, {"x": 9, "y": 921, "w": 145, "h": 25}, {"x": 357, "y": 991, "w": 141, "h": 20}]}, {"file": "image2.png", "w": 1941, "h": 1332, "boxes": [{"x": 998, "y": 16, "w": 253, "h": 37}, {"x": 1218, "y": 65, "w": 115, "h": 37}, {"x": 0, "y": 112, "w": 236, "h": 37}, {"x": 0, "y": 190, "w": 233, "h": 33}, {"x": 1663, "y": 205, "w": 278, "h": 38}, {"x": 1663, "y": 274, "w": 278, "h": 84}, {"x": 11, "y": 355, "w": 259, "h": 37}, {"x": 1663, "y": 377, "w": 278, "h": 37}, {"x": 14, "y": 435, "w": 253, "h": 31}, {"x": 1663, "y": 446, "w": 278, "h": 37}, {"x": 11, "y": 480, "w": 170, "h": 87}, {"x": 1663, "y": 510, "w": 278, "h": 38}, {"x": 14, "y": 581, "w": 283, "h": 32}, {"x": 14, "y": 634, "w": 284, "h": 65}, {"x": 1663, "y": 612, "w": 278, "h": 38}, {"x": 14, "y": 717, "w": 284, "h": 33}, {"x": 1663, "y": 715, "w": 278, "h": 37}, {"x": 14, "y": 780, "w": 284, "h": 32}, {"x": 1663, "y": 760, "w": 278, "h": 37}, {"x": 11, "y": 830, "w": 225, "h": 38}, {"x": 1663, "y": 834, "w": 278, "h": 37}, {"x": 14, "y": 885, "w": 253, "h": 33}, {"x": 1663, "y": 931, "w": 278, "h": 37}, {"x": 14, "y": 974, "w": 253, "h": 32}, {"x": 1663, "y": 983, "w": 278, "h": 37}, {"x": 1663, "y": 1130, "w": 278, "h": 119}]}, {"file": "image3.png", "w": 972, "h": 641, "boxes": [{"x": 128, "y": 33, "w": 99, "h": 42}, {"x": 86, "y": 189, "w": 99, "h": 21}, {"x": 196, "y": 189, "w": 128, "h": 41}, {"x": 360, "y": 189, "w": 138, "h": 21}, {"x": 531, "y": 189, "w": 314, "h": 47}, {"x": 0, "y": 248, "w": 77, "h": 51}, {"x": 423, "y": 244, "w": 124, "h": 91}, {"x": 894, "y": 266, "w": 78, "h": 30}, {"x": 0, "y": 332, "w": 75, "h": 46}, {"x": 387, "y": 355, "w": 98, "h": 21}, {"x": 894, "y": 336, "w": 78, "h": 45}, {"x": 409, "y": 392, "w": 129, "h": 85}, {"x": 0, "y": 494, "w": 128, "h": 21}, {"x": 413, "y": 496, "w": 117, "h": 21}, {"x": 798, "y": 491, "w": 133, "h": 21}, {"x": 414, "y": 582, "w": 115, "h": 21}]}, {"file": "image4.png", "w": 1186, "h": 530, "boxes": [{"x": 117, "y": 16, "w": 187, "h": 32}, {"x": 710, "y": 0, "w": 97, "h": 50}, {"x": 858, "y": 0, "w": 71, "h": 24}, {"x": 1031, "y": 0, "w": 155, "h": 49}, {"x": 117, "y": 104, "w": 117, "h": 66}, {"x": 1091, "y": 118, "w": 95, "h": 53}, {"x": 116, "y": 197, "w": 167, "h": 69}, {"x": 1093, "y": 196, "w": 93, "h": 86}, {"x": 619, "y": 214, "w": 93, "h": 85}, {"x": 123, "y": 313, "w": 182, "h": 108}, {"x": 640, "y": 319, "w": 93, "h": 86}, {"x": 1023, "y": 342, "w": 140, "h": 31}, {"x": 544, "y": 422, "w": 145, "h": 36}, {"x": 987, "y": 423, "w": 98, "h": 35}]}, {"file": "image5.png", "w": 1119, "h": 817, "boxes": [{"x": 109, "y": 8, "w": 49, "h": 201}, {"x": 714, "y": 70, "w": 99, "h": 21}, {"x": 837, "y": 70, "w": 99, "h": 21}, {"x": 983, "y": 75, "w": 136, "h": 54}, {"x": 231, "y": 107, "w": 99, "h": 78}, {"x": 560, "y": 92, "w": 115, "h": 41}, {"x": 985, "y": 145, "w": 134, "h": 50}, {"x": 457, "y": 164, "w": 138, "h": 21}, {"x": 0, "y": 270, "w": 64, "h": 21}, {"x": 0, "y": 315, "w": 99, "h": 42}, {"x": 342, "y": 312, "w": 99, "h": 42}, {"x": 697, "y": 285, "w": 98, "h": 44}, {"x": 813, "y": 285, "w": 99, "h": 21}, {"x": 900, "y": 329, "w": 187, "h": 20}, {"x": 342, "y": 382, "w": 99, "h": 42}, {"x": 0, "y": 455, "w": 66, "h": 42}, {"x": 341, "y": 451, "w": 99, "h": 42}, {"x": 469, "y": 470, "w": 146, "h": 45}, {"x": 648, "y": 497, "w": 99, "h": 20}, {"x": 788, "y": 497, "w": 197, "h": 20}, {"x": 0, "y": 527, "w": 112, "h": 46}, {"x": 335, "y": 531, "w": 103, "h": 45}, {"x": 839, "y": 554, "w": 155, "h": 21}, {"x": 0, "y": 599, "w": 99, "h": 20}, {"x": 335, "y": 596, "w": 103, "h": 24}, {"x": 457, "y": 588, "w": 65, "h": 21}, {"x": 0, "y": 635, "w": 64, "h": 21}, {"x": 0, "y": 684, "w": 77, "h": 41}, {"x": 320, "y": 720, "w": 98, "h": 21}, {"x": 475, "y": 760, "w": 103, "h": 25}, {"x": 624, "y": 760, "w": 103, "h": 25}, {"x": 745, "y": 760, "w": 144, "h": 25}]}, {"file": "image6.png", "w": 966, "h": 1332, "boxes": [{"x": 126, "y": 91, "w": 158, "h": 147}, {"x": 10, "y": 212, "w": 140, "h": 54}, {"x": 393, "y": 222, "w": 145, "h": 47}, {"x": 280, "y": 266, "w": 100, "h": 24}, {"x": 708, "y": 266, "w": 101, "h": 24}, {"x": 10, "y": 290, "w": 524, "h": 387}, {"x": 558, "y": 304, "w": 379, "h": 363}, {"x": 187, "y": 803, "w": 691, "h": 186}, {"x": 158, "y": 1049, "w": 113, "h": 24}, {"x": 804, "y": 1049, "w": 113, "h": 24}, {"x": 191, "y": 1135, "w": 683, "h": 176}]}, {"file": "image7.png", "w": 1146, "h": 678, "boxes": [{"x": 303, "y": 23, "w": 75, "h": 55}, {"x": 132, "y": 90, "w": 159, "h": 504}, {"x": 361, "y": 100, "w": 140, "h": 31}, {"x": 986, "y": 98, "w": 160, "h": 36}, {"x": 0, "y": 152, "w": 116, "h": 105}, {"x": 986, "y": 150, "w": 120, "h": 35}, {"x": 361, "y": 249, "w": 129, "h": 52}, {"x": 986, "y": 240, "w": 121, "h": 34}, {"x": 986, "y": 305, "w": 132, "h": 36}, {"x": 15, "y": 349, "w": 73, "h": 32}, {"x": 353, "y": 370, "w": 95, "h": 67}, {"x": 986, "y": 402, "w": 160, "h": 36}, {"x": 986, "y": 492, "w": 160, "h": 35}, {"x": 37, "y": 535, "w": 72, "h": 67}]}, {"file": "image8.png", "w": 1153, "h": 785, "boxes": [{"x": 13, "y": 0, "w": 136, "h": 141}, {"x": 996, "y": 285, "w": 102, "h": 44}, {"x": 0, "y": 329, "w": 140, "h": 45}, {"x": 0, "y": 391, "w": 179, "h": 45}, {"x": 997, "y": 454, "w": 102, "h": 45}, {"x": 0, "y": 554, "w": 114, "h": 71}, {"x": 996, "y": 528, "w": 110, "h": 44}, {"x": 0, "y": 648, "w": 171, "h": 35}, {"x": 996, "y": 661, "w": 147, "h": 44}, {"x": 0, "y": 701, "w": 159, "h": 34}, {"x": 120, "y": 754, "w": 176, "h": 31}]}, {"file": "image9.png", "w": 974, "h": 700, "boxes": [{"x": 28, "y": 0, "w": 106, "h": 117}, {"x": 458, "y": 104, "w": 54, "h": 29}, {"x": 891, "y": 132, "w": 74, "h": 37}, {"x": 273, "y": 168, "w": 280, "h": 461}, {"x": 0, "y": 217, "w": 120, "h": 290}, {"x": 831, "y": 206, "w": 143, "h": 380}, {"x": 559, "y": 384, "w": 131, "h": 178}, {"x": 0, "y": 524, "w": 140, "h": 132}, {"x": 227, "y": 628, "w": 164, "h": 30}, {"x": 557, "y": 628, "w": 164, "h": 31}]}, {"file": "image10.png", "w": 818, "h": 781, "boxes": [{"x": 384, "y": 89, "w": 227, "h": 42}, {"x": 384, "y": 186, "w": 227, "h": 43}, {"x": 0, "y": 275, "w": 100, "h": 42}, {"x": 384, "y": 296, "w": 227, "h": 43}, {"x": 0, "y": 361, "w": 71, "h": 62}, {"x": 393, "y": 369, "w": 218, "h": 78}]}, {"file": "image11.png", "w": 810, "h": 631, "boxes": [{"x": 0, "y": 14, "w": 141, "h": 31}, {"x": 669, "y": 14, "w": 141, "h": 31}, {"x": 669, "y": 116, "w": 141, "h": 49}, {"x": 0, "y": 186, "w": 141, "h": 32}, {"x": 669, "y": 202, "w": 141, "h": 78}, {"x": 0, "y": 305, "w": 142, "h": 36}, {"x": 669, "y": 323, "w": 141, "h": 50}, {"x": 0, "y": 373, "w": 156, "h": 35}, {"x": 669, "y": 390, "w": 141, "h": 50}, {"x": 0, "y": 445, "w": 175, "h": 32}, {"x": 669, "y": 467, "w": 141, "h": 50}]}, {"file": "image12.png", "w": 676, "h": 853, "boxes": [{"x": 286, "y": 141, "w": 93, "h": 70}, {"x": 0, "y": 201, "w": 77, "h": 40}, {"x": 299, "y": 229, "w": 80, "h": 22}, {"x": 581, "y": 203, "w": 77, "h": 40}, {"x": 0, "y": 276, "w": 77, "h": 39}, {"x": 286, "y": 302, "w": 77, "h": 39}, {"x": 0, "y": 334, "w": 129, "h": 39}, {"x": 286, "y": 423, "w": 77, "h": 40}, {"x": 292, "y": 497, "w": 102, "h": 23}, {"x": 0, "y": 541, "w": 77, "h": 122}, {"x": 581, "y": 593, "w": 95, "h": 59}, {"x": 288, "y": 601, "w": 139, "h": 23}, {"x": 0, "y": 677, "w": 101, "h": 22}, {"x": 288, "y": 640, "w": 139, "h": 23}, {"x": 581, "y": 668, "w": 95, "h": 102}, {"x": 0, "y": 714, "w": 77, "h": 40}, {"x": 286, "y": 688, "w": 108, "h": 71}, {"x": 288, "y": 776, "w": 153, "h": 37}]}, {"file": "image13.png", "w": 1083, "h": 1240, "boxes": [{"x": 806, "y": 18, "w": 114, "h": 22}, {"x": 604, "y": 43, "w": 357, "h": 402}, {"x": 326, "y": 85, "w": 207, "h": 32}, {"x": 185, "y": 137, "w": 153, "h": 22}, {"x": 212, "y": 184, "w": 113, "h": 21}, {"x": 298, "y": 172, "w": 259, "h": 214}, {"x": 472, "y": 189, "w": 114, "h": 22}, {"x": 976, "y": 194, "w": 72, "h": 65}, {"x": 190, "y": 227, "w": 71, "h": 78}, {"x": 976, "y": 278, "w": 107, "h": 45}, {"x": 185, "y": 332, "w": 97, "h": 47}, {"x": 976, "y": 347, "w": 107, "h": 45}, {"x": 183, "y": 395, "w": 97, "h": 47}, {"x": 385, "y": 425, "w": 72, "h": 22}, {"x": 472, "y": 425, "w": 93, "h": 62}, {"x": 829, "y": 553, "w": 69, "h": 24}, {"x": 651, "y": 583, "w": 141, "h": 42}, {"x": 929, "y": 588, "w": 140, "h": 41}, {"x": 237, "y": 632, "w": 76, "h": 23}, {"x": 646, "y": 601, "w": 318, "h": 237}, {"x": 41, "y": 650, "w": 148, "h": 53}, {"x": 41, "y": 675, "w": 382, "h": 160}, {"x": 394, "y": 653, "w": 117, "h": 19}, {"x": 461, "y": 734, "w": 117, "h": 43}, {"x": 95, "y": 826, "w": 116, "h": 19}, {"x": 348, "y": 823, "w": 121, "h": 23}, {"x": 756, "y": 975, "w": 220, "h": 160}, {"x": 638, "y": 1100, "w": 101, "h": 45}, {"x": 638, "y": 1159, "w": 145, "h": 45}]}, {"file": "image14.png", "w": 977, "h": 788, "boxes": [{"x": 7, "y": 0, "w": 81, "h": 150}, {"x": 124, "y": 13, "w": 111, "h": 21}, {"x": 124, "y": 56, "w": 111, "h": 21}, {"x": 125, "y": 94, "w": 110, "h": 21}, {"x": 243, "y": 149, "w": 112, "h": 21}, {"x": 152, "y": 183, "w": 112, "h": 21}, {"x": 337, "y": 185, "w": 112, "h": 20}, {"x": 771, "y": 204, "w": 69, "h": 25}, {"x": 393, "y": 242, "w": 112, "h": 21}, {"x": 770, "y": 251, "w": 69, "h": 25}, {"x": 883, "y": 257, "w": 94, "h": 37}, {"x": 100, "y": 301, "w": 68, "h": 46}, {"x": 769, "y": 312, "w": 74, "h": 21}, {"x": 0, "y": 378, "w": 84, "h": 41}, {"x": 436, "y": 378, "w": 68, "h": 85}, {"x": 853, "y": 466, "w": 64, "h": 21}, {"x": 420, "y": 482, "w": 111, "h": 45}, {"x": 853, "y": 508, "w": 64, "h": 21}, {"x": 0, "y": 547, "w": 91, "h": 65}, {"x": 436, "y": 559, "w": 103, "h": 163}, {"x": 853, "y": 548, "w": 64, "h": 21}, {"x": 852, "y": 603, "w": 89, "h": 62}]}, {"file": "image15.png", "w": 637, "h": 825, "boxes": [{"x": 273, "y": 152, "w": 92, "h": 44}, {"x": 0, "y": 170, "w": 105, "h": 96}, {"x": 273, "y": 209, "w": 92, "h": 44}, {"x": 568, "y": 207, "w": 69, "h": 48}, {"x": 0, "y": 279, "w": 71, "h": 44}, {"x": 273, "y": 266, "w": 92, "h": 43}, {"x": 569, "y": 277, "w": 68, "h": 47}, {"x": 0, "y": 336, "w": 71, "h": 43}, {"x": 273, "y": 323, "w": 92, "h": 72}, {"x": 273, "y": 435, "w": 118, "h": 44}, {"x": 274, "y": 517, "w": 97, "h": 21}, {"x": 0, "y": 573, "w": 83, "h": 21}, {"x": 273, "y": 585, "w": 98, "h": 43}, {"x": 0, "y": 659, "w": 71, "h": 63}, {"x": 273, "y": 641, "w": 116, "h": 20}, {"x": 568, "y": 640, "w": 58, "h": 23}, {"x": 269, "y": 730, "w": 133, "h": 95}]}, {"file": "image16.png", "w": 1092, "h": 475, "boxes": [{"x": 0, "y": 46, "w": 111, "h": 23}, {"x": 110, "y": 70, "w": 247, "h": 251}, {"x": 454, "y": 78, "w": 165, "h": 93}, {"x": 683, "y": 49, "w": 210, "h": 364}, {"x": 931, "y": 41, "w": 145, "h": 36}, {"x": 0, "y": 83, "w": 87, "h": 54}, {"x": 931, "y": 89, "w": 145, "h": 48}, {"x": 0, "y": 178, "w": 85, "h": 171}, {"x": 931, "y": 177, "w": 145, "h": 48}, {"x": 467, "y": 211, "w": 71, "h": 52}, {"x": 448, "y": 277, "w": 68, "h": 24}, {"x": 452, "y": 313, "w": 191, "h": 78}, {"x": 933, "y": 302, "w": 141, "h": 87}]}, {"file": "image17.png", "w": 824, "h": 1289, "boxes": [{"x": 0, "y": 0, "w": 112, "h": 257}, {"x": 367, "y": 314, "w": 90, "h": 27}, {"x": 41, "y": 353, "w": 98, "h": 41}, {"x": 367, "y": 354, "w": 90, "h": 27}, {"x": 688, "y": 351, "w": 103, "h": 45}, {"x": 367, "y": 394, "w": 90, "h": 27}, {"x": 367, "y": 448, "w": 90, "h": 27}, {"x": 337, "y": 539, "w": 200, "h": 26}, {"x": 725, "y": 528, "w": 99, "h": 53}, {"x": 337, "y": 579, "w": 151, "h": 41}, {"x": 336, "y": 654, "w": 163, "h": 41}, {"x": 725, "y": 689, "w": 99, "h": 54}, {"x": 381, "y": 797, "w": 64, "h": 56}, {"x": 368, "y": 965, "w": 83, "h": 50}, {"x": 701, "y": 984, "w": 102, "h": 56}, {"x": 7, "y": 1000, "w": 84, "h": 61}, {"x": 370, "y": 1033, "w": 73, "h": 56}, {"x": 703, "y": 1073, "w": 121, "h": 108}, {"x": 376, "y": 1103, "w": 73, "h": 24}, {"x": 337, "y": 1145, "w": 151, "h": 24}, {"x": 7, "y": 1170, "w": 73, "h": 24}, {"x": 377, "y": 1182, "w": 73, "h": 23}, {"x": 701, "y": 1192, "w": 76, "h": 28}]}], "created": "2025-12-15T02:29:12.481893"};
 
+
+// --- Fix: remove accidental giant overlay boxes (from PDF capture) ---
+// We keep only "label" boxes (the rectangles you actually type into) and drop
+// huge regions that can cover the diagram. This also keeps grading + word bank aligned.
+(function sanitizeBoxes(){
+  const MAX_W = 320;     // px
+  const MAX_H = 170;     // px
+  const MAX_AREA = 60000; // px^2
+  DATA.pages.forEach(p=>{
+    const clean = [];
+    (p.boxes||[]).forEach(b=>{
+      const area = (b.w||0) * (b.h||0);
+      const ok = (b.x>=0 && b.y>=0 && b.w>0 && b.h>0 &&
+                  b.w <= MAX_W && b.h <= MAX_H && area <= MAX_AREA);
+      if(ok) clean.push(b);
+    });
+    p.boxes = clean;
+  });
+})();
+
+
 const LS_ANS = "jz_anat_answers_v3";
 const LS_KEY = "jz_anat_key_v3";
 const LS_UI  = "jz_anat_ui_v2";
@@ -442,10 +463,20 @@ function acceptedList(keyStr){
 // focus on recall without needing a perfect "which-arrow" match.
 const BUILTIN_PAGE_SETS = {
   "image1.png": [
-    "tibia", "fibula", "tibial condyle|medial condyle|lateral condyle", "tibial tuberosity",
-    "anterior crest|tibial crest", "interosseous border|interosseous membrane",
-    "head of fibula|fibular head", "shaft|body", "medial malleolus", "lateral malleolus",
-    "fibular notch", "soleal line"
+    "tibia", "fibula",
+    "medial condyle", "lateral condyle",
+    "intercondylar eminence|intercondylar tubercles",
+    "tibial tuberosity",
+    "anterior crest|anterior border|tibial crest",
+    "interosseous border|interosseous membrane",
+    "shaft|body|diaphysis",
+    "nutrient foramen",
+    "medial malleolus",
+    "fibular notch",
+    "soleal line",
+    "head of fibula|fibular head",
+    "fibular shaft|shaft of fibula",
+    "lateral malleolus"
   ],
   "image2.png": [
     "frontal bone", "parietal bone", "temporal bone", "occipital bone", "sphenoid bone", "ethmoid bone",
@@ -689,6 +720,11 @@ function renderFigure(){
       fig.appendChild(inp);
     });
 
+    // drag/drop + page-specific word bank
+    window.__JZ__PAGE_INDEX__ = ui.pageIndex;
+    try{ attachDropHandlers(); }catch(e){}
+    try{ buildBankForPage(ui.pageIndex); }catch(e){}
+
     // Apply focus mode visibility
     if(ui.focus){
       fig.querySelectorAll("input.boxInput").forEach(inp => {
@@ -700,11 +736,6 @@ function renderFigure(){
     if(ui.lastGrade && ui.lastGrade.pageFile === page.file){
       applyGradeMarksForPage(page.file);
     }
-    // ensure page-scoped word bank updates on every page change
-    window.pageIndex = ui.pageIndex;
-    window.__JZ__PAGE_INDEX__ = ui.pageIndex;
-    try{ attachDropHandlers(); }catch(e){}
-    try{ buildBankForPage(ui.pageIndex); }catch(e){}
   };
 }
 
@@ -853,11 +884,11 @@ function render(){
   document.getElementById("focusBtn").textContent = `Focus mode: ${ui.focus ? "ON" : "OFF"}`;
 
   if(ui.view==="label"){
-    window.pageIndex = ui.pageIndex;
-    window.__JZ__PAGE_INDEX__ = ui.pageIndex;
     renderFigure();
-    // bank rebuild happens after image load too, but we can paint initial chips now
-    try{ buildBankForPage(ui.pageIndex); }catch(e){}
+  // keep word bank synced with current page
+  window.__JZ__PAGE_INDEX__ = ui.pageIndex;
+  try{ buildBankForPage(ui.pageIndex); }catch(e){}
+
     if(!ui.lastGrade) renderScorePill("Not graded yet", "none");
   } else if(ui.view==="key"){
     renderKeyEditor();
@@ -918,43 +949,14 @@ render();
 // Word bank + drag & drop
 // =========================
 
-// Page-specific term banks (unordered). Each string may include synonyms separated by "|".
-const TERMS_BY_PAGE = [
-  // 1) Tibia & fibula (anterior/posterior)
-  ["tibia","fibula","medial condyle","lateral condyle","intercondylar eminence|intercondylar tubercles","tibial tuberosity","anterior crest|anterior border","shaft|body","medial malleolus","fibular head|head of fibula","lateral malleolus","fibular notch","interosseous border","interosseous membrane","soleal line","nutrient foramen"],
-  // 2) Skull (right lateral view)
-  ["frontal bone|frontal","parietal bone|parietal","temporal bone|temporal","occipital bone|occipital","sphenoid bone|sphenoid","zygomatic bone|zygoma","maxilla|maxillary bone","mandible","nasal bone|nasal","lacrimal bone|lacrimal","palatine bone|palatine","external acoustic meatus|ear canal","mastoid process","styloid process","zygomatic arch","coronal suture","squamous suture","lambdoid suture","orbit|orbital cavity","supraorbital foramen","infraorbital foramen","mental foramen","alveolar process","ramus of mandible|ramus","condylar process|mandibular condyle","coronoid process","temporomandibular joint|tmj"],
-  // 3) Scapula (R anterior/posterior)
-  ["scapula","acromion","coracoid process","glenoid cavity|glenoid fossa","scapular spine|spine of scapula","supraspinous fossa","infraspinous fossa","subscapular fossa","medial border|vertebral border","lateral border|axillary border","superior border","superior angle","inferior angle","neck of scapula|scapular neck","supraglenoid tubercle","infraglenoid tubercle"],
-  // 4) Sacrum & coccyx
-  ["sacrum","coccyx","base","apex","sacral promontory","ala","auricular surface","anterior (ventral) sacral foramina|anterior sacral foramina","posterior (dorsal) sacral foramina|posterior sacral foramina","median sacral crest","sacral canal","sacral hiatus","sacral cornua","transverse ridges"],
-  // 5) Foot (tarsals/metatarsals/phalanges)
-  ["tarsals|tarsal bones","talus","trochlea of talus|trochlea","calcaneus","calcaneal tuberosity","sustentaculum tali","navicular","cuboid","medial cuneiform","intermediate cuneiform","lateral cuneiform","metatarsals|metatarsal bones","metatarsal I|1st metatarsal","metatarsal II|2nd metatarsal","metatarsal III|3rd metatarsal","metatarsal IV|4th metatarsal","metatarsal V|5th metatarsal","phalanges|phalanx","proximal phalanges","middle phalanges","distal phalanges","proximal phalanx of hallux|proximal phalanx (big toe)","distal phalanx of hallux|distal phalanx (big toe)","medial malleolus (tibia)","lateral malleolus (fibula)","sesamoid bones","tarsometatarsal joint","metatarsophalangeal joint","interphalangeal joints","hindfoot","midfoot","forefoot"],
-  // 6) Pectoral girdle & clavicle
-  ["pectoral girdle","clavicle","scapula","acromion","sternal end|medial end","acromial end|lateral end","sternoclavicular joint","acromioclavicular joint","costoclavicular ligament","coracoclavicular ligament","subclavian groove","conoid tubercle","trapezoid line"],
-  // 7) Thorax / sternum / ribs
-  ["sternum","manubrium","body of sternum|sternal body","xiphoid process","jugular notch","clavicular notch","sternal angle","costal cartilages","true ribs (1\u20137)|true ribs","false ribs (8\u201312)|false ribs","floating ribs (11\u201312)|floating ribs","costal margin","thoracic cage","intercostal spaces"],
-  // 8) Pelvis (anterior)
-  ["pelvis","hip bone|coxal bone|os coxae","ilium","ischium","pubis","acetabulum","obturator foramen","sacrum","coccyx","iliac crest","pubic symphysis","anterior superior iliac spine|asis","anterior inferior iliac spine|aiis","ischial tuberosity"],
-  // 9) Hip bone (lateral/medial views)
-  ["ilium","iliac crest","iliac fossa","auricular surface","anterior superior iliac spine|asis","anterior inferior iliac spine|aiis","posterior superior iliac spine|psis","posterior inferior iliac spine|piis","greater sciatic notch","ischial spine","ischial tuberosity","ischium","pubis","pubic tubercle","superior pubic ramus","inferior pubic ramus","obturator foramen","acetabulum","arcuate line","pubic arch"],
-  // 10) Vertebral column regions
-  ["vertebral column|spine","cervical vertebrae","thoracic vertebrae","lumbar vertebrae","sacrum","coccyx","intervertebral discs"],
-  // 11) Skull (posterior view)
-  ["parietal bone|parietal","occipital bone|occipital","temporal bone|temporal","lambdoid suture","sagittal suture","mastoid process","external occipital protuberance","superior nuchal line","occipitomastoid suture","parietal foramen","mastoid foramen","inion"],
-  // 12) Humerus (ant/post)
-  ["humerus","head of humerus|head","anatomical neck","surgical neck","greater tubercle","lesser tubercle","intertubercular sulcus|bicipital groove","deltoid tuberosity","shaft|body","medial epicondyle","lateral epicondyle","medial supracondylar ridge","lateral supracondylar ridge","capitulum","trochlea","olecranon fossa","coronoid fossa","radial fossa"],
-  // 13) Cervical vertebrae: typical + atlas + axis
-  ["typical cervical vertebra","vertebral body|body","vertebral foramen","spinous process","bifid spinous process|bifid spine","transverse process","transverse foramen","superior articular facet","inferior articular facet","pedicle","lamina","vertebral arch","intervertebral foramen","uncinate process|uncinate processes","atlas|c1","anterior arch","posterior arch","anterior tubercle","posterior tubercle","lateral mass","superior articular facet (atlas)","facet for dens|fovea dentis","transverse ligament of atlas|transverse ligament","axis|c2","dens|odontoid process","body of axis","superior articular facet (axis)","transverse process (axis)","spinous process (axis)"],
-  // 14) Hand (carpals/metacarpals/phalanges)
-  ["hand","carpals|carpal bones","scaphoid","lunate","triquetrum","pisiform","trapezium","trapezoid","capitate","hamate","metacarpals|metacarpal bones","metacarpal I|1st metacarpal","metacarpal II|2nd metacarpal","metacarpal III|3rd metacarpal","metacarpal IV|4th metacarpal","metacarpal V|5th metacarpal","phalanges|phalanx","proximal phalanges","middle phalanges","distal phalanges","proximal phalanx (thumb)","distal phalanx (thumb)"],
-  // 15) Radius & ulna
-  ["radius","ulna","olecranon","trochlear notch","coronoid process","radial notch (ulna)|radial notch","head of radius|radial head","neck of radius|radial neck","radial tuberosity","ulnar tuberosity","interosseous border","shaft|body","styloid process of radius|radial styloid process","styloid process of ulna|ulnar styloid process","ulnar notch (radius)|ulnar notch","head of ulna|ulnar head","distal radioulnar joint"],
-  // 16) Typical vertebra (general landmarks)
-  ["vertebra","vertebral body|body","vertebral foramen","vertebral arch","spinous process","transverse process","lamina","pedicle","superior articular process","inferior articular process","facet|articular facet","intervertebral disc","intervertebral foramen"],
-  // 17) Femur
-  ["femur","head of femur|head","fovea capitis|fovea capitis femoris","neck of femur|neck","greater trochanter","lesser trochanter","intertrochanteric line","intertrochanteric crest","gluteal tuberosity","linea aspera","pectineal line","medial condyle","lateral condyle","medial epicondyle","lateral epicondyle","patellar surface","intercondylar fossa","medial supracondylar line","lateral supracondylar line","adductor tubercle","shaft|body","greater trochanteric fossa|trochanteric fossa","popliteal surface"]
-];
+// Page-specific word bank is derived from the OpenStax-friendly built-in sets by file.
+// (Teacher usually doesn't require perfect arrow-match for practice; these are for recall.)
+function termsForPageIndex(pageIndex){
+  const page = DATA.pages[pageIndex];
+  if(!page) return [];
+  return (BUILTIN_PAGE_SETS[page.file] || []).slice();
+}
+
 
 function norm(s){
   return (s||"")
@@ -984,7 +986,7 @@ function buildBankForPage(pageIndex){
   if(!chipsEl) return;
   const searchEl = document.getElementById("bankSearch");
   const hideUsedEl = document.getElementById("hideUsed");
-  const list = TERMS_BY_PAGE[pageIndex] || [];
+  const list = (termsForPageIndex(pageIndex) || []);
   const flat = [];
   list.forEach(entry=>{
     // show the first synonym as the chip label, but accept all synonyms for grading
@@ -1077,7 +1079,7 @@ document.getElementById("shuffleBankBtn")?.addEventListener("click",()=>{
   const chipsEl = document.getElementById("bankChips");
   if(!chipsEl) return;
   const idx = window.__JZ__PAGE_INDEX__ ?? 0;
-  const list = TERMS_BY_PAGE[idx] || [];
+  const list = (termsForPageIndex(idx) || []);
   const flat = list.map(e=>e.split("|")[0]);
   // Fisher-Yates
   for(let i=flat.length-1;i>0;i--){
@@ -1103,7 +1105,7 @@ document.getElementById("clearBankSelectionBtn")?.addEventListener("click",()=>{
       const idx = window.pageIndex ?? 0;
       window.__JZ__PAGE_INDEX__ = idx;
       // reset bank order when page changes
-      window.__JZ__BANK_STATE__ = {order: (TERMS_BY_PAGE[idx]||[]).map(e=>e.split("|")[0])};
+      window.__JZ__BANK_STATE__ = {order: ((termsForPageIndex(idx) || [])).map(e=>e.split("|")[0])};
       attachDropHandlers();
       buildBankForPage(idx);
       return ret;
@@ -1130,7 +1132,7 @@ document.getElementById("clearBankSelectionBtn")?.addEventListener("click",()=>{
     // if strict key exists, original behavior
     if(window.mode === "strict" && originalGradeOne) return originalGradeOne(ans, keyStr);
     const idx = window.__JZ__PAGE_INDEX__ ?? window.pageIndex ?? 0;
-    const map = acceptedFromList(TERMS_BY_PAGE[idx] || []);
+    const map = acceptedFromList((termsForPageIndex(idx) || []));
     const a = norm(ans);
     if(!a) return {status:"empty", correct:false};
     const ok = map.has(a);

@@ -700,6 +700,11 @@ function renderFigure(){
     if(ui.lastGrade && ui.lastGrade.pageFile === page.file){
       applyGradeMarksForPage(page.file);
     }
+    // ensure page-scoped word bank updates on every page change
+    window.pageIndex = ui.pageIndex;
+    window.__JZ__PAGE_INDEX__ = ui.pageIndex;
+    try{ attachDropHandlers(); }catch(e){}
+    try{ buildBankForPage(ui.pageIndex); }catch(e){}
   };
 }
 
@@ -848,7 +853,11 @@ function render(){
   document.getElementById("focusBtn").textContent = `Focus mode: ${ui.focus ? "ON" : "OFF"}`;
 
   if(ui.view==="label"){
+    window.pageIndex = ui.pageIndex;
+    window.__JZ__PAGE_INDEX__ = ui.pageIndex;
     renderFigure();
+    // bank rebuild happens after image load too, but we can paint initial chips now
+    try{ buildBankForPage(ui.pageIndex); }catch(e){}
     if(!ui.lastGrade) renderScorePill("Not graded yet", "none");
   } else if(ui.view==="key"){
     renderKeyEditor();
@@ -982,9 +991,15 @@ function buildBankForPage(pageIndex){
     flat.push(entry.split("|")[0]);
   });
 
-  // shuffle helper
-  const state = window.__JZ__BANK_STATE__ || (window.__JZ__BANK_STATE__={order:[]});
-  if(state.order.length !== flat.length) state.order = [...flat];
+  // shuffle helper (reset when page changes or term-set changes)
+  const state = window.__JZ__BANK_STATE__ || (window.__JZ__BANK_STATE__={order:[], pageIndex:null, signature:""});
+  const signature = flat.join("||");
+  if(state.pageIndex !== pageIndex || state.signature !== signature){
+    state.order = [...flat];
+    state.pageIndex = pageIndex;
+    state.signature = signature;
+    bankSelected = null;
+  }
   const order = state.order;
 
   const inputs = Array.from(document.querySelectorAll("#figure input.boxInput"));

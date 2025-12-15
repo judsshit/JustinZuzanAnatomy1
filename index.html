@@ -1,0 +1,791 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Justin Zuzan's Anatomy Study Package</title>
+<style>
+:root{ --bg:#0b0f14; --panel:#121925; --muted:#9fb0c3; --text:#e9eef5; --accent:#4da3ff; --good:#23c55e; --bad:#ef4444; --warn:#f59e0b; }
+*{ box-sizing:border-box; }
+body{ margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--text); }
+header{ position:sticky; top:0; z-index:5; background:linear-gradient(180deg, rgba(11,15,20,0.95), rgba(11,15,20,0.80)); backdrop-filter: blur(10px);
+        border-bottom:1px solid rgba(255,255,255,0.08); }
+.bar{ display:flex; gap:10px; align-items:center; padding:10px 12px; flex-wrap:wrap; }
+.bar h1{ font-size:14px; margin:0; font-weight:700; letter-spacing:0.2px; }
+.bar .spacer{ flex:1; }
+button{ background:var(--panel); color:var(--text); border:1px solid rgba(255,255,255,0.12); padding:8px 10px; border-radius:10px;
+        cursor:pointer; font-size:13px; }
+button:hover{ border-color: rgba(77,163,255,0.5); }
+button.primary{ background:rgba(77,163,255,0.15); border-color: rgba(77,163,255,0.35); }
+button.danger{ background:rgba(239,68,68,0.12); border-color: rgba(239,68,68,0.35); }
+button.good{ background:rgba(35,197,94,0.14); border-color: rgba(35,197,94,0.35); }
+button.warn{ background:rgba(245,158,11,0.14); border-color: rgba(245,158,11,0.35); }
+.wrap{ display:grid; grid-template-columns: 290px 1fr; min-height: calc(100vh - 60px); }
+aside{ border-right:1px solid rgba(255,255,255,0.08); background:rgba(18,25,37,0.65); backdrop-filter: blur(10px); }
+.asideTop{ padding:12px; border-bottom:1px solid rgba(255,255,255,0.08); }
+.small{ color:var(--muted); font-size:12px; line-height:1.25; }
+.list{ max-height: calc(100vh - 140px); overflow:auto; padding:8px; }
+.item{ padding:10px; border-radius:12px; border:1px solid rgba(255,255,255,0.08); margin:8px 6px; cursor:pointer; background:rgba(11,15,20,0.35); }
+.item:hover{ border-color: rgba(77,163,255,0.35); }
+.item.active{ outline:2px solid rgba(77,163,255,0.55); }
+.item .meta{ display:flex; justify-content:space-between; color:var(--muted); font-size:12px; margin-top:6px; gap:8px; }
+main{ padding:14px; }
+.stage{ max-width: 1200px; margin: 0 auto; }
+.controls{ display:flex; gap:10px; flex-wrap:wrap; margin:12px 0; align-items:center; }
+.kbd{ font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; font-size:12px; padding:2px 6px; border-radius:8px;
+      border:1px solid rgba(255,255,255,0.12); color:var(--muted); }
+.figure{ position:relative; width:100%; border-radius:16px; overflow:hidden; border:1px solid rgba(255,255,255,0.10);
+        background: rgba(18,25,37,0.35); }
+.figure img{ width:100%; height:auto; display:block; }
+.boxInput{
+  position:absolute; border:1px solid rgba(255,255,255,0.25); background:rgba(0,0,0,0.25);
+  color:var(--text); border-radius:6px; padding:2px 6px; font-size:12px; line-height:1.1;
+  outline:none;
+}
+.boxInput:focus{ border-color: rgba(77,163,255,0.9); box-shadow: 0 0 0 3px rgba(77,163,255,0.18); }
+.boxInput.good{ border-color: rgba(35,197,94,0.9); box-shadow: 0 0 0 3px rgba(35,197,94,0.18); }
+.boxInput.bad{ border-color: rgba(239,68,68,0.9); box-shadow: 0 0 0 3px rgba(239,68,68,0.18); }
+.boxInput.unk{ border-color: rgba(245,158,11,0.9); box-shadow: 0 0 0 3px rgba(245,158,11,0.18); }
+textarea{ width:100%; min-height:120px; border-radius:12px; border:1px solid rgba(255,255,255,0.12); background:rgba(11,15,20,0.45);
+          color:var(--text); padding:10px; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; font-size:12px; }
+.row{ display:grid; grid-template-columns: 1fr 1fr; gap:12px; }
+.card{ border:1px solid rgba(255,255,255,0.10); border-radius:16px; padding:12px; background:rgba(18,25,37,0.35); }
+.card h3{ margin:0 0 8px 0; font-size:13px; color:var(--muted); font-weight:700; }
+.hint{ color:var(--muted); font-size:12px; line-height:1.35; }
+.tabbar{ display:flex; gap:8px; flex-wrap:wrap; }
+.tab{ padding:8px 10px; border-radius:12px; border:1px solid rgba(255,255,255,0.12); background:rgba(18,25,37,0.35); cursor:pointer; font-size:13px; }
+.tab.active{ outline:2px solid rgba(77,163,255,0.55); }
+.hidden{ display:none !important; }
+hr{ border:0; border-top:1px solid rgba(255,255,255,0.10); margin:12px 0; }
+.grid3{ display:grid; grid-template-columns: repeat(3, 1fr); gap:10px; }
+.pill{ display:inline-block; padding:2px 8px; border:1px solid rgba(255,255,255,0.14); border-radius:999px; font-size:12px; color:var(--muted); }
+.qa{ border:1px solid rgba(255,255,255,0.10); border-radius:14px; padding:10px; background:rgba(11,15,20,0.35); }
+.qa summary{ cursor:pointer; font-weight:650; }
+.keyTable{ width:100%; border-collapse:separate; border-spacing:0 8px; }
+.keyTable td{ vertical-align:top; }
+.keyInp{ width:100%; padding:8px 10px; border-radius:10px; border:1px solid rgba(255,255,255,0.12); background:rgba(11,15,20,0.45); color:var(--text); }
+@media (max-width: 950px){
+  .wrap{ grid-template-columns: 1fr; }
+  aside{ border-right:none; border-bottom:1px solid rgba(255,255,255,0.08); }
+  .list{ max-height: 220px; }
+  .row{ grid-template-columns: 1fr; }
+  .grid3{ grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="bar">
+    <h1>Justin Zuzan's Anatomy Study Package</h1>
+    <span class="kbd">Tip: Tab / Shift+Tab • Enter = next box</span>
+    <div class="spacer"></div>
+
+    <div class="tabbar" role="tablist" aria-label="sections">
+      <div class="tab" id="tabLabel" role="tab">Labeling</div>
+      <div class="tab" id="tabStudy" role="tab">Study</div>
+      <div class="tab" id="tabKey" role="tab">Answer Key</div>
+    </div>
+
+    <button id="prevBtn">← Prev</button>
+    <button id="nextBtn">Next →</button>
+    <button class="good" id="checkPageBtn">Check page</button>
+    <button class="good" id="checkAllBtn">Check all</button>
+    <button id="modeBtn" title="Toggle grading mode">Mode: OpenStax terms</button>
+    <button class="danger" id="clearPageBtn">Clear page</button>
+    <button class="danger" id="clearAllBtn">Clear all</button>
+  </div>
+</header>
+
+<div class="wrap">
+  <aside>
+    <div class="asideTop">
+      <div class="small" id="asideInfo"></div>
+    </div>
+    <div class="list" id="pageList"></div>
+  </aside>
+
+  <main>
+    <div class="stage">
+
+      <!-- LABELING SECTION -->
+      <section id="sectionLabel">
+        <div class="controls">
+          <button class="primary" id="focusBtn">Focus mode: OFF</button>
+          <span class="pill" id="scorePill">Not graded yet</span>
+          <div class="spacer"></div>
+          <button id="exportAnsBtn">Export answers</button>
+          <button id="importAnsBtn">Import answers</button>
+        </div>
+
+        <div class="figure" id="figure"></div>
+
+        <div class="row" style="margin-top:12px;">
+          <div class="card">
+            <h3>Fastest method (actually works)</h3>
+            <div class="hint">
+              1) Do a page from memory → 2) <b>Check page</b> → 3) Fix the reds → 4) Re-do that same page later.<br/>
+              Use the notecard idea: the key is for rescue, not for learning during the quiz.
+            </div>
+          </div>
+          <div class="card">
+            <h3>Export / Import</h3>
+            <div class="hint">
+              Export gives a JSON blob you can email to yourself. Import pastes it back in (works across devices).
+            </div>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:12px;">
+          <h3>Transfer box</h3>
+          <textarea id="transferBox" placeholder="Export data appears here. To import, paste JSON and click Import."></textarea>
+        </div>
+      </section>
+
+      <!-- STUDY SECTION -->
+      <section id="sectionStudy" class="hidden">
+        <div class="card">
+          <h3>OpenStax-based Final Topic Review (no fluff)</h3>
+          <div class="hint">
+            This is built from your instructor’s review topics + OpenStax structure. Use it like a checklist.
+          </div>
+          <hr/>
+          <div class="grid3">
+            <div class="card">
+              <h3>Ch 1 (1.6) — Terms</h3>
+              <div class="hint">
+                <b>Anatomical position</b>: standing, feet fwd, arms sides, palms fwd<br/>
+                <b>Directions</b>: ant/ post, sup/inf, med/lat, prox/dist, superficial/deep<br/>
+                <b>Regions</b>: anterior vs posterior region names (be able to identify)
+              </div>
+            </div>
+            <div class="card">
+              <h3>Ch 2 — Water & organics</h3>
+              <div class="hint">
+                <b>Water</b>: polarity → H bonds; solvent; high heat capacity; lubrication; reactant; pH (acid donates H⁺, base accepts H⁺)<br/>
+                <b>Organics</b>: carbs (energy), lipids (energy/membranes), proteins (enzymes/structure), nucleic acids (DNA/RNA)
+              </div>
+            </div>
+            <div class="card">
+              <h3>Ch 3 — Cell membrane</h3>
+              <div class="hint">
+                Fluid mosaic; phospholipid bilayer (hydrophilic heads, hydrophobic tails); proteins (transport/receptors); cholesterol (fluidity); carbs (ID)<br/>
+                Transport: diffusion, facilitated diffusion, active, vesicular
+              </div>
+            </div>
+          </div>
+
+          <div class="grid3" style="margin-top:10px;">
+            <div class="card">
+              <h3>Ch 4 — 4 tissues</h3>
+              <div class="hint">
+                <b>Epithelial</b>: covers/lines; avascular; fast regen; protection/absorption/secretion<br/>
+                <b>Connective</b>: support/bind; cells + fibers + matrix; bone/blood/cartilage/adipose<br/>
+                <b>Muscle</b>: contracts (skeletal/cardiac/smooth)<br/>
+                <b>Nervous</b>: neurons + glia; communication
+              </div>
+            </div>
+            <div class="card">
+              <h3>Ch 5 — Skin layers</h3>
+              <div class="hint">
+                Epidermis (S→D): corneum, (lucidum thick skin), granulosum, spinosum, basale (mitosis)<br/>
+                Dermis: papillary, reticular<br/>
+                Hypodermis: adipose; not skin
+              </div>
+            </div>
+            <div class="card">
+              <h3>Ch 6/9 — Skeleton/joints</h3>
+              <div class="hint">
+                Skeleton functions: support, protection, movement, mineral storage, blood cell production<br/>
+                Bone anatomy: diaphysis, epiphyses, compact/spongy, medullary cavity, periosteum<br/>
+                Synovial joints: hinge, ball&socket, pivot, saddle, condylar, plane<br/>
+                Movements: flex/ext, abd/add, rotation, circumduction, sup/pron, dorsi/plantar
+              </div>
+            </div>
+          </div>
+
+          <hr/>
+          <details class="qa">
+            <summary>Rapid-fire practice prompts (say out loud)</summary>
+            <div class="hint" style="margin-top:8px;">
+              1) “Define medial vs lateral.”<br/>
+              2) “List epidermal layers superficial → deep.”<br/>
+              3) “Name the 4 tissue types + 1 key feature each.”<br/>
+              4) “List 5 functions of the skeleton.”<br/>
+              5) “Give 6 synovial joint types + example.”<br/>
+              6) “Describe cell membrane components + what each does.”<br/>
+              7) “Define pH; what’s normal blood pH?”<br/>
+              8) “Proximal vs distal examples (arm/leg).”
+            </div>
+          </details>
+
+          <details class="qa" style="margin-top:10px;">
+            <summary>Mini self-quiz (no multiple choice; force recall)</summary>
+            <div class="hint" style="margin-top:8px;">
+              • Which epidermal layer is where mitosis occurs?<br/>
+              • What does “hydrophobic” mean in the membrane and why does it matter?<br/>
+              • What connective tissue has a fluid matrix?<br/>
+              • Which joint type is the thumb CMC joint?<br/>
+              • Define dorsiflexion vs plantar flexion.
+            </div>
+          </details>
+
+          <details class="qa" style="margin-top:10px;">
+            <summary>How to cram this in 1 day (the efficient way)</summary>
+            <div class="hint" style="margin-top:8px;">
+              • Do 3 labeling pages fast (memory only) → check → fix reds.<br/>
+              • Take a 5–10 min break.<br/>
+              • Repeat, but re-do the first page again after 30–60 minutes (spaced repetition).<br/>
+              • Use the Study tab as your checklist between labeling sets.
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <!-- KEY SECTION -->
+      <section id="sectionKey" class="hidden">
+        <div class="controls">
+          <button class="warn" id="copyPageToKeyBtn">Copy THIS page answers → key</button>
+          <button class="warn" id="copyAllToKeyBtn">Copy ALL answers → key</button>
+          <div class="spacer"></div>
+          <button id="exportKeyBtn">Export key</button>
+          <button id="importKeyBtn">Import key</button>
+        </div>
+
+        <div class="card">
+          <h3>Answer Key (for grading)</h3>
+          <div class="hint">
+            Type the <b>correct</b> label for each blank. You can allow multiple accepted answers using <b>|</b> (example: <code>zygomatic bone|zygoma</code>).<br/>
+            Once your key is filled, go back to <b>Labeling</b> and hit <b>Check page</b>.
+          </div>
+          <hr/>
+          <div id="keyEditor"></div>
+
+          <div class="card" style="margin-top:12px;">
+            <h3>Key transfer box</h3>
+            <textarea id="keyTransferBox" placeholder="Exported KEY JSON appears here. To import a key, paste it and click Import key."></textarea>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+</div>
+
+<script>
+const DATA = {"pages": [{"file": "image1.png", "w": 849, "h": 1046, "boxes": [{"x": 186, "y": 182, "w": 145, "h": 25}, {"x": 352, "y": 198, "w": 146, "h": 44}, {"x": 680, "y": 196, "w": 148, "h": 48}, {"x": 383, "y": 287, "w": 76, "h": 60}, {"x": 717, "y": 287, "w": 132, "h": 21}, {"x": 0, "y": 385, "w": 147, "h": 20}, {"x": 357, "y": 466, "w": 141, "h": 21}, {"x": 717, "y": 513, "w": 132, "h": 20}, {"x": 361, "y": 573, "w": 132, "h": 37}, {"x": 0, "y": 690, "w": 64, "h": 21}, {"x": 396, "y": 711, "w": 63, "h": 21}, {"x": 721, "y": 688, "w": 67, "h": 25}, {"x": 355, "y": 882, "w": 145, "h": 24}, {"x": 697, "y": 911, "w": 145, "h": 24}, {"x": 9, "y": 921, "w": 145, "h": 25}, {"x": 357, "y": 991, "w": 141, "h": 20}]}, {"file": "image2.png", "w": 1941, "h": 1332, "boxes": [{"x": 998, "y": 16, "w": 253, "h": 37}, {"x": 1218, "y": 65, "w": 115, "h": 37}, {"x": 0, "y": 112, "w": 236, "h": 37}, {"x": 0, "y": 190, "w": 233, "h": 33}, {"x": 1663, "y": 205, "w": 278, "h": 38}, {"x": 1663, "y": 274, "w": 278, "h": 84}, {"x": 11, "y": 355, "w": 259, "h": 37}, {"x": 1663, "y": 377, "w": 278, "h": 37}, {"x": 14, "y": 435, "w": 253, "h": 31}, {"x": 1663, "y": 446, "w": 278, "h": 37}, {"x": 11, "y": 480, "w": 170, "h": 87}, {"x": 1663, "y": 510, "w": 278, "h": 38}, {"x": 14, "y": 581, "w": 283, "h": 32}, {"x": 14, "y": 634, "w": 284, "h": 65}, {"x": 1663, "y": 612, "w": 278, "h": 38}, {"x": 14, "y": 717, "w": 284, "h": 33}, {"x": 1663, "y": 715, "w": 278, "h": 37}, {"x": 14, "y": 780, "w": 284, "h": 32}, {"x": 1663, "y": 760, "w": 278, "h": 37}, {"x": 11, "y": 830, "w": 225, "h": 38}, {"x": 1663, "y": 834, "w": 278, "h": 37}, {"x": 14, "y": 885, "w": 253, "h": 33}, {"x": 1663, "y": 931, "w": 278, "h": 37}, {"x": 14, "y": 974, "w": 253, "h": 32}, {"x": 1663, "y": 983, "w": 278, "h": 37}, {"x": 1663, "y": 1130, "w": 278, "h": 119}]}, {"file": "image3.png", "w": 972, "h": 641, "boxes": [{"x": 128, "y": 33, "w": 99, "h": 42}, {"x": 86, "y": 189, "w": 99, "h": 21}, {"x": 196, "y": 189, "w": 128, "h": 41}, {"x": 360, "y": 189, "w": 138, "h": 21}, {"x": 531, "y": 189, "w": 314, "h": 47}, {"x": 0, "y": 248, "w": 77, "h": 51}, {"x": 423, "y": 244, "w": 124, "h": 91}, {"x": 894, "y": 266, "w": 78, "h": 30}, {"x": 0, "y": 332, "w": 75, "h": 46}, {"x": 387, "y": 355, "w": 98, "h": 21}, {"x": 894, "y": 336, "w": 78, "h": 45}, {"x": 409, "y": 392, "w": 129, "h": 85}, {"x": 0, "y": 494, "w": 128, "h": 21}, {"x": 413, "y": 496, "w": 117, "h": 21}, {"x": 798, "y": 491, "w": 133, "h": 21}, {"x": 414, "y": 582, "w": 115, "h": 21}]}, {"file": "image4.png", "w": 1186, "h": 530, "boxes": [{"x": 117, "y": 16, "w": 187, "h": 32}, {"x": 710, "y": 0, "w": 97, "h": 50}, {"x": 858, "y": 0, "w": 71, "h": 24}, {"x": 1031, "y": 0, "w": 155, "h": 49}, {"x": 117, "y": 104, "w": 117, "h": 66}, {"x": 1091, "y": 118, "w": 95, "h": 53}, {"x": 116, "y": 197, "w": 167, "h": 69}, {"x": 1093, "y": 196, "w": 93, "h": 86}, {"x": 619, "y": 214, "w": 93, "h": 85}, {"x": 123, "y": 313, "w": 182, "h": 108}, {"x": 640, "y": 319, "w": 93, "h": 86}, {"x": 1023, "y": 342, "w": 140, "h": 31}, {"x": 544, "y": 422, "w": 145, "h": 36}, {"x": 987, "y": 423, "w": 98, "h": 35}]}, {"file": "image5.png", "w": 1119, "h": 817, "boxes": [{"x": 109, "y": 8, "w": 49, "h": 201}, {"x": 714, "y": 70, "w": 99, "h": 21}, {"x": 837, "y": 70, "w": 99, "h": 21}, {"x": 983, "y": 75, "w": 136, "h": 54}, {"x": 231, "y": 107, "w": 99, "h": 78}, {"x": 560, "y": 92, "w": 115, "h": 41}, {"x": 985, "y": 145, "w": 134, "h": 50}, {"x": 457, "y": 164, "w": 138, "h": 21}, {"x": 0, "y": 270, "w": 64, "h": 21}, {"x": 0, "y": 315, "w": 99, "h": 42}, {"x": 342, "y": 312, "w": 99, "h": 42}, {"x": 697, "y": 285, "w": 98, "h": 44}, {"x": 813, "y": 285, "w": 99, "h": 21}, {"x": 900, "y": 329, "w": 187, "h": 20}, {"x": 342, "y": 382, "w": 99, "h": 42}, {"x": 0, "y": 455, "w": 66, "h": 42}, {"x": 341, "y": 451, "w": 99, "h": 42}, {"x": 469, "y": 470, "w": 146, "h": 45}, {"x": 648, "y": 497, "w": 99, "h": 20}, {"x": 788, "y": 497, "w": 197, "h": 20}, {"x": 0, "y": 527, "w": 112, "h": 46}, {"x": 335, "y": 531, "w": 103, "h": 45}, {"x": 839, "y": 554, "w": 155, "h": 21}, {"x": 0, "y": 599, "w": 99, "h": 20}, {"x": 335, "y": 596, "w": 103, "h": 24}, {"x": 457, "y": 588, "w": 65, "h": 21}, {"x": 0, "y": 635, "w": 64, "h": 21}, {"x": 0, "y": 684, "w": 77, "h": 41}, {"x": 320, "y": 720, "w": 98, "h": 21}, {"x": 475, "y": 760, "w": 103, "h": 25}, {"x": 624, "y": 760, "w": 103, "h": 25}, {"x": 745, "y": 760, "w": 144, "h": 25}]}, {"file": "image6.png", "w": 966, "h": 1332, "boxes": [{"x": 126, "y": 91, "w": 158, "h": 147}, {"x": 10, "y": 212, "w": 140, "h": 54}, {"x": 393, "y": 222, "w": 145, "h": 47}, {"x": 280, "y": 266, "w": 100, "h": 24}, {"x": 708, "y": 266, "w": 101, "h": 24}, {"x": 10, "y": 290, "w": 524, "h": 387}, {"x": 558, "y": 304, "w": 379, "h": 363}, {"x": 187, "y": 803, "w": 691, "h": 186}, {"x": 158, "y": 1049, "w": 113, "h": 24}, {"x": 804, "y": 1049, "w": 113, "h": 24}, {"x": 191, "y": 1135, "w": 683, "h": 176}]}, {"file": "image7.png", "w": 1146, "h": 678, "boxes": [{"x": 303, "y": 23, "w": 75, "h": 55}, {"x": 132, "y": 90, "w": 159, "h": 504}, {"x": 361, "y": 100, "w": 140, "h": 31}, {"x": 986, "y": 98, "w": 160, "h": 36}, {"x": 0, "y": 152, "w": 116, "h": 105}, {"x": 986, "y": 150, "w": 120, "h": 35}, {"x": 361, "y": 249, "w": 129, "h": 52}, {"x": 986, "y": 240, "w": 121, "h": 34}, {"x": 986, "y": 305, "w": 132, "h": 36}, {"x": 15, "y": 349, "w": 73, "h": 32}, {"x": 353, "y": 370, "w": 95, "h": 67}, {"x": 986, "y": 402, "w": 160, "h": 36}, {"x": 986, "y": 492, "w": 160, "h": 35}, {"x": 37, "y": 535, "w": 72, "h": 67}]}, {"file": "image8.png", "w": 1153, "h": 785, "boxes": [{"x": 13, "y": 0, "w": 136, "h": 141}, {"x": 996, "y": 285, "w": 102, "h": 44}, {"x": 0, "y": 329, "w": 140, "h": 45}, {"x": 0, "y": 391, "w": 179, "h": 45}, {"x": 997, "y": 454, "w": 102, "h": 45}, {"x": 0, "y": 554, "w": 114, "h": 71}, {"x": 996, "y": 528, "w": 110, "h": 44}, {"x": 0, "y": 648, "w": 171, "h": 35}, {"x": 996, "y": 661, "w": 147, "h": 44}, {"x": 0, "y": 701, "w": 159, "h": 34}, {"x": 120, "y": 754, "w": 176, "h": 31}]}, {"file": "image9.png", "w": 974, "h": 700, "boxes": [{"x": 28, "y": 0, "w": 106, "h": 117}, {"x": 458, "y": 104, "w": 54, "h": 29}, {"x": 891, "y": 132, "w": 74, "h": 37}, {"x": 273, "y": 168, "w": 280, "h": 461}, {"x": 0, "y": 217, "w": 120, "h": 290}, {"x": 831, "y": 206, "w": 143, "h": 380}, {"x": 559, "y": 384, "w": 131, "h": 178}, {"x": 0, "y": 524, "w": 140, "h": 132}, {"x": 227, "y": 628, "w": 164, "h": 30}, {"x": 557, "y": 628, "w": 164, "h": 31}]}, {"file": "image10.png", "w": 818, "h": 781, "boxes": [{"x": 384, "y": 89, "w": 227, "h": 42}, {"x": 384, "y": 186, "w": 227, "h": 43}, {"x": 0, "y": 275, "w": 100, "h": 42}, {"x": 384, "y": 296, "w": 227, "h": 43}, {"x": 0, "y": 361, "w": 71, "h": 62}, {"x": 393, "y": 369, "w": 218, "h": 78}]}, {"file": "image11.png", "w": 810, "h": 631, "boxes": [{"x": 0, "y": 14, "w": 141, "h": 31}, {"x": 669, "y": 14, "w": 141, "h": 31}, {"x": 669, "y": 116, "w": 141, "h": 49}, {"x": 0, "y": 186, "w": 141, "h": 32}, {"x": 669, "y": 202, "w": 141, "h": 78}, {"x": 0, "y": 305, "w": 142, "h": 36}, {"x": 669, "y": 323, "w": 141, "h": 50}, {"x": 0, "y": 373, "w": 156, "h": 35}, {"x": 669, "y": 390, "w": 141, "h": 50}, {"x": 0, "y": 445, "w": 175, "h": 32}, {"x": 669, "y": 467, "w": 141, "h": 50}]}, {"file": "image12.png", "w": 676, "h": 853, "boxes": [{"x": 286, "y": 141, "w": 93, "h": 70}, {"x": 0, "y": 201, "w": 77, "h": 40}, {"x": 299, "y": 229, "w": 80, "h": 22}, {"x": 581, "y": 203, "w": 77, "h": 40}, {"x": 0, "y": 276, "w": 77, "h": 39}, {"x": 286, "y": 302, "w": 77, "h": 39}, {"x": 0, "y": 334, "w": 129, "h": 39}, {"x": 286, "y": 423, "w": 77, "h": 40}, {"x": 292, "y": 497, "w": 102, "h": 23}, {"x": 0, "y": 541, "w": 77, "h": 122}, {"x": 581, "y": 593, "w": 95, "h": 59}, {"x": 288, "y": 601, "w": 139, "h": 23}, {"x": 0, "y": 677, "w": 101, "h": 22}, {"x": 288, "y": 640, "w": 139, "h": 23}, {"x": 581, "y": 668, "w": 95, "h": 102}, {"x": 0, "y": 714, "w": 77, "h": 40}, {"x": 286, "y": 688, "w": 108, "h": 71}, {"x": 288, "y": 776, "w": 153, "h": 37}]}, {"file": "image13.png", "w": 1083, "h": 1240, "boxes": [{"x": 806, "y": 18, "w": 114, "h": 22}, {"x": 604, "y": 43, "w": 357, "h": 402}, {"x": 326, "y": 85, "w": 207, "h": 32}, {"x": 185, "y": 137, "w": 153, "h": 22}, {"x": 212, "y": 184, "w": 113, "h": 21}, {"x": 298, "y": 172, "w": 259, "h": 214}, {"x": 472, "y": 189, "w": 114, "h": 22}, {"x": 976, "y": 194, "w": 72, "h": 65}, {"x": 190, "y": 227, "w": 71, "h": 78}, {"x": 976, "y": 278, "w": 107, "h": 45}, {"x": 185, "y": 332, "w": 97, "h": 47}, {"x": 976, "y": 347, "w": 107, "h": 45}, {"x": 183, "y": 395, "w": 97, "h": 47}, {"x": 385, "y": 425, "w": 72, "h": 22}, {"x": 472, "y": 425, "w": 93, "h": 62}, {"x": 829, "y": 553, "w": 69, "h": 24}, {"x": 651, "y": 583, "w": 141, "h": 42}, {"x": 929, "y": 588, "w": 140, "h": 41}, {"x": 237, "y": 632, "w": 76, "h": 23}, {"x": 646, "y": 601, "w": 318, "h": 237}, {"x": 41, "y": 650, "w": 148, "h": 53}, {"x": 41, "y": 675, "w": 382, "h": 160}, {"x": 394, "y": 653, "w": 117, "h": 19}, {"x": 461, "y": 734, "w": 117, "h": 43}, {"x": 95, "y": 826, "w": 116, "h": 19}, {"x": 348, "y": 823, "w": 121, "h": 23}, {"x": 756, "y": 975, "w": 220, "h": 160}, {"x": 638, "y": 1100, "w": 101, "h": 45}, {"x": 638, "y": 1159, "w": 145, "h": 45}]}, {"file": "image14.png", "w": 977, "h": 788, "boxes": [{"x": 7, "y": 0, "w": 81, "h": 150}, {"x": 124, "y": 13, "w": 111, "h": 21}, {"x": 124, "y": 56, "w": 111, "h": 21}, {"x": 125, "y": 94, "w": 110, "h": 21}, {"x": 243, "y": 149, "w": 112, "h": 21}, {"x": 152, "y": 183, "w": 112, "h": 21}, {"x": 337, "y": 185, "w": 112, "h": 20}, {"x": 771, "y": 204, "w": 69, "h": 25}, {"x": 393, "y": 242, "w": 112, "h": 21}, {"x": 770, "y": 251, "w": 69, "h": 25}, {"x": 883, "y": 257, "w": 94, "h": 37}, {"x": 100, "y": 301, "w": 68, "h": 46}, {"x": 769, "y": 312, "w": 74, "h": 21}, {"x": 0, "y": 378, "w": 84, "h": 41}, {"x": 436, "y": 378, "w": 68, "h": 85}, {"x": 853, "y": 466, "w": 64, "h": 21}, {"x": 420, "y": 482, "w": 111, "h": 45}, {"x": 853, "y": 508, "w": 64, "h": 21}, {"x": 0, "y": 547, "w": 91, "h": 65}, {"x": 436, "y": 559, "w": 103, "h": 163}, {"x": 853, "y": 548, "w": 64, "h": 21}, {"x": 852, "y": 603, "w": 89, "h": 62}]}, {"file": "image15.png", "w": 637, "h": 825, "boxes": [{"x": 273, "y": 152, "w": 92, "h": 44}, {"x": 0, "y": 170, "w": 105, "h": 96}, {"x": 273, "y": 209, "w": 92, "h": 44}, {"x": 568, "y": 207, "w": 69, "h": 48}, {"x": 0, "y": 279, "w": 71, "h": 44}, {"x": 273, "y": 266, "w": 92, "h": 43}, {"x": 569, "y": 277, "w": 68, "h": 47}, {"x": 0, "y": 336, "w": 71, "h": 43}, {"x": 273, "y": 323, "w": 92, "h": 72}, {"x": 273, "y": 435, "w": 118, "h": 44}, {"x": 274, "y": 517, "w": 97, "h": 21}, {"x": 0, "y": 573, "w": 83, "h": 21}, {"x": 273, "y": 585, "w": 98, "h": 43}, {"x": 0, "y": 659, "w": 71, "h": 63}, {"x": 273, "y": 641, "w": 116, "h": 20}, {"x": 568, "y": 640, "w": 58, "h": 23}, {"x": 269, "y": 730, "w": 133, "h": 95}]}, {"file": "image16.png", "w": 1092, "h": 475, "boxes": [{"x": 0, "y": 46, "w": 111, "h": 23}, {"x": 110, "y": 70, "w": 247, "h": 251}, {"x": 454, "y": 78, "w": 165, "h": 93}, {"x": 683, "y": 49, "w": 210, "h": 364}, {"x": 931, "y": 41, "w": 145, "h": 36}, {"x": 0, "y": 83, "w": 87, "h": 54}, {"x": 931, "y": 89, "w": 145, "h": 48}, {"x": 0, "y": 178, "w": 85, "h": 171}, {"x": 931, "y": 177, "w": 145, "h": 48}, {"x": 467, "y": 211, "w": 71, "h": 52}, {"x": 448, "y": 277, "w": 68, "h": 24}, {"x": 452, "y": 313, "w": 191, "h": 78}, {"x": 933, "y": 302, "w": 141, "h": 87}]}, {"file": "image17.png", "w": 824, "h": 1289, "boxes": [{"x": 0, "y": 0, "w": 112, "h": 257}, {"x": 367, "y": 314, "w": 90, "h": 27}, {"x": 41, "y": 353, "w": 98, "h": 41}, {"x": 367, "y": 354, "w": 90, "h": 27}, {"x": 688, "y": 351, "w": 103, "h": 45}, {"x": 367, "y": 394, "w": 90, "h": 27}, {"x": 367, "y": 448, "w": 90, "h": 27}, {"x": 337, "y": 539, "w": 200, "h": 26}, {"x": 725, "y": 528, "w": 99, "h": 53}, {"x": 337, "y": 579, "w": 151, "h": 41}, {"x": 336, "y": 654, "w": 163, "h": 41}, {"x": 725, "y": 689, "w": 99, "h": 54}, {"x": 381, "y": 797, "w": 64, "h": 56}, {"x": 368, "y": 965, "w": 83, "h": 50}, {"x": 701, "y": 984, "w": 102, "h": 56}, {"x": 7, "y": 1000, "w": 84, "h": 61}, {"x": 370, "y": 1033, "w": 73, "h": 56}, {"x": 703, "y": 1073, "w": 121, "h": 108}, {"x": 376, "y": 1103, "w": 73, "h": 24}, {"x": 337, "y": 1145, "w": 151, "h": 24}, {"x": 7, "y": 1170, "w": 73, "h": 24}, {"x": 377, "y": 1182, "w": 73, "h": 23}, {"x": 701, "y": 1192, "w": 76, "h": 28}]}], "created": "2025-12-15T02:29:12.481893"};
+
+const LS_ANS = "jz_anat_answers_v3";
+const LS_KEY = "jz_anat_key_v3";
+const LS_UI  = "jz_anat_ui_v2";
+
+let ui = {
+  view: "label", // label | study | key
+  pageIndex: 0,
+  focus: false,
+  gradeMode: "terms", // terms | strict
+  lastGrade: null // { pageFile, correct, total, pct }
+};
+
+let answers = {};
+let key = {};
+
+function safeParse(raw, fallback){
+  try{ const v = JSON.parse(raw); return (v && typeof v === "object") ? v : fallback; }catch(e){ return fallback; }
+}
+function loadAll(){
+  ui = { ...ui, ...safeParse(localStorage.getItem(LS_UI), {}) };
+  answers = safeParse(localStorage.getItem(LS_ANS), {});
+  key = safeParse(localStorage.getItem(LS_KEY), {});
+  if(!["label","study","key"].includes(ui.view)) ui.view = "label";
+  if(ui.pageIndex < 0 || ui.pageIndex >= DATA.pages.length) ui.pageIndex = 0;
+}
+function saveAll(){
+  try{ localStorage.setItem(LS_UI, JSON.stringify(ui)); }catch(e){}
+  try{ localStorage.setItem(LS_ANS, JSON.stringify(answers)); }catch(e){}
+  try{ localStorage.setItem(LS_KEY, JSON.stringify(key)); }catch(e){}
+}
+function keyFor(pageFile, boxIdx){ return `${pageFile}::${boxIdx}`; }
+
+function normalize(s){
+  return (s||"")
+    .toLowerCase()
+    .trim()
+    .replace(/[_-]/g," ")
+    .replace(/[.,;:()\[\]{}]/g,"")
+    .replace(/\s+/g," ");
+}
+
+function acceptedList(keyStr){
+  return (keyStr||"").split("|").map(x=>normalize(x)).filter(Boolean);
+}
+
+// Built-in OpenStax-friendly term lists (unordered). In "OpenStax terms" mode,
+// a box is marked correct if the term you typed is one of the expected terms
+// for that page. This is intentionally tolerant (synonyms included) so you can
+// focus on recall without needing a perfect "which-arrow" match.
+const BUILTIN_PAGE_SETS = {
+  "image1.png": [
+    "tibia", "fibula", "tibial condyle|medial condyle|lateral condyle", "tibial tuberosity",
+    "anterior crest|tibial crest", "interosseous border|interosseous membrane",
+    "head of fibula|fibular head", "shaft|body", "medial malleolus", "lateral malleolus",
+    "fibular notch", "soleal line"
+  ],
+  "image2.png": [
+    "frontal bone", "parietal bone", "temporal bone", "occipital bone", "sphenoid bone", "ethmoid bone",
+    "zygomatic bone|zygoma", "maxilla", "mandible", "nasal bone", "lacrimal bone", "vomer",
+    "coronal suture", "sagittal suture", "lambdoid suture", "squamous suture",
+    "orbit|orbital cavity", "zygomatic arch", "mastoid process", "styloid process", "external acoustic meatus|external auditory meatus",
+    "mandibular condyle|condylar process", "coronoid process", "mental foramen",
+    "temporal fossa", "infratemporal fossa"
+  ],
+  "image3.png": [
+    "pectoral girdle", "scapula", "clavicle", "acromion", "coracoid process", "glenoid cavity|glenoid fossa",
+    "spine of scapula", "supraspinous fossa", "infraspinous fossa", "subscapular fossa",
+    "superior border", "medial border|vertebral border", "lateral border|axillary border",
+    "superior angle", "inferior angle", "suprascapular notch"
+  ],
+  "image4.png": [
+    "sacrum", "coccyx", "sacral promontory", "ala", "sacral canal",
+    "anterior sacral foramina", "posterior sacral foramina",
+    "transverse lines", "median sacral crest", "sacral hiatus", "sacral cornua",
+    "auricular surface", "superior articular process|superior articular processes"
+  ],
+  "image5.png": [
+    "tarsals", "metatarsals", "phalanges", "proximal phalanx", "middle phalanx", "distal phalanx",
+    "hallux|big toe", "calcaneus", "talus", "navicular", "cuboid",
+    "medial cuneiform", "intermediate cuneiform", "lateral cuneiform",
+    "metatarsal i|1st metatarsal", "metatarsal ii|2nd metatarsal", "metatarsal iii|3rd metatarsal",
+    "metatarsal iv|4th metatarsal", "metatarsal v|5th metatarsal"
+  ],
+  "image6.png": [
+    "clavicle", "scapula", "acromion", "acromioclavicular joint|ac joint", "sternoclavicular joint|sc joint",
+    "glenoid cavity|glenoid fossa", "conoid tubercle", "acromial end", "sternal end"
+  ],
+  "image7.png": [
+    "sternum", "manubrium", "body of sternum|sternal body", "xiphoid process",
+    "jugular notch|suprasternal notch", "clavicular notch", "sternal angle",
+    "ribs", "costal cartilages", "true ribs", "false ribs", "floating ribs",
+    "rib 1|first rib", "rib 2|second rib", "rib 3|third rib", "rib 4|fourth rib", "rib 5|fifth rib",
+    "rib 6|sixth rib", "rib 7|seventh rib", "rib 8|eighth rib", "rib 9|ninth rib", "rib 10|tenth rib",
+    "rib 11|eleventh rib", "rib 12|twelfth rib"
+  ],
+  "image8.png": [
+    "pelvis", "hip bone|os coxae", "ilium", "ischium", "pubis", "sacrum",
+    "iliac crest", "anterior superior iliac spine|asis", "anterior inferior iliac spine|aiis",
+    "acetabulum", "obturator foramen", "pubic symphysis"
+  ],
+  "image9.png": [
+    "hip bone|os coxae", "ilium", "ischium", "pubis", "iliac crest",
+    "anterior superior iliac spine|asis", "anterior inferior iliac spine|aiis",
+    "posterior superior iliac spine|psis", "posterior inferior iliac spine|piis",
+    "greater sciatic notch", "acetabulum", "obturator foramen",
+    "ischial spine", "ischial tuberosity", "pubic tubercle",
+    "superior pubic ramus", "inferior pubic ramus", "auricular surface", "iliac fossa", "arcuate line"
+  ],
+  "image10.png": [
+    "vertebral column", "cervical region|cervical vertebrae", "thoracic region|thoracic vertebrae",
+    "lumbar region|lumbar vertebrae", "sacrum", "coccyx"
+  ],
+  "image11.png": [
+    "parietal bone", "occipital bone", "temporal bone", "lambdoid suture", "sagittal suture",
+    "squamous suture", "mastoid process", "external occipital protuberance"
+  ],
+  "image12.png": [
+    "humerus", "head", "anatomical neck", "surgical neck", "greater tubercle", "lesser tubercle",
+    "intertubercular groove|bicipital groove", "deltoid tuberosity", "shaft|body",
+    "medial epicondyle", "lateral epicondyle", "capitulum", "trochlea",
+    "radial fossa", "coronoid fossa", "olecranon fossa"
+  ],
+  "image13.png": [
+    "cervical vertebra", "vertebral body|body", "vertebral foramen", "spinous process",
+    "transverse process", "transverse foramen", "superior articular process|superior articular facet",
+    "inferior articular process|inferior articular facet", "pedicle", "lamina",
+    "atlas|c1", "axis|c2", "dens|odontoid process",
+    "anterior arch", "posterior arch", "lateral mass|lateral masses"
+  ],
+  "image14.png": [
+    "metacarpals", "phalanges", "proximal phalanx", "middle phalanx", "distal phalanx",
+    "carpals", "scaphoid", "lunate", "triquetrum", "pisiform",
+    "trapezium", "trapezoid", "capitate", "hamate",
+    "radius", "ulna", "styloid process"
+  ],
+  "image15.png": [
+    "radius", "ulna", "interosseous membrane", "olecranon", "trochlear notch",
+    "coronoid process", "head of radius|radial head", "radial tuberosity",
+    "ulnar notch", "head of ulna|ulnar head", "styloid process"
+  ],
+  "image16.png": [
+    "vertebra", "vertebral body|body", "vertebral foramen", "spinous process",
+    "transverse process", "pedicle", "lamina", "vertebral arch",
+    "superior articular process|superior articular facet", "inferior articular process|inferior articular facet",
+    "intervertebral disc", "intervertebral foramen", "facet joint|zygapophyseal joint"
+  ],
+  "image17.png": [
+    "femur", "head", "neck", "greater trochanter", "lesser trochanter",
+    "intertrochanteric line", "intertrochanteric crest", "linea aspera",
+    "medial condyle", "lateral condyle", "medial epicondyle", "lateral epicondyle",
+    "patellar surface", "intercondylar fossa", "gluteal tuberosity"
+  ]
+};
+
+function isCorrectByBuiltinSet(pageFile, ansNorm){
+  const set = BUILTIN_PAGE_SETS[pageFile];
+  if(!set) return false;
+  if(!ansNorm) return false;
+  // Each entry may contain synonyms separated by |.
+  return set.some(entry => acceptedList(entry).includes(ansNorm));
+}
+
+function gradeOne(pageFile, boxIdx){
+  const k = keyFor(pageFile, boxIdx);
+  const ans = normalize(answers[k]||"");
+  const kRaw = key[k];
+  const acc = acceptedList(kRaw);
+  // STRICT: uses per-box answer key.
+  if(ui.gradeMode === "strict"){
+    if(!acc.length) return {status:"unk", correct:false}; // unknown
+    const ok = ans && acc.includes(ans);
+    return {status: ok ? "good" : "bad", correct: ok};
+  }
+
+  // TERMS: built-in OpenStax-friendly term lists (unordered). If the teacher
+  // doesn't require exact arrow matching, this is a fast self-check.
+  const ok = isCorrectByBuiltinSet(pageFile, ans);
+  if(!BUILTIN_PAGE_SETS[pageFile]) return {status:"unk", correct:false};
+  return {status: ok ? "good" : "bad", correct: ok};
+}
+
+function setView(v){
+  ui.view = v; saveAll(); render();
+}
+
+function pct(n, denom){ return denom ? Math.round(100*n/denom) : 0; }
+
+function renderHeaderTabs(){
+  document.getElementById("tabLabel").classList.toggle("active", ui.view==="label");
+  document.getElementById("tabStudy").classList.toggle("active", ui.view==="study");
+  document.getElementById("tabKey").classList.toggle("active", ui.view==="key");
+}
+
+function renderAsideInfo(){
+  const info = document.getElementById("asideInfo");
+  if(ui.view==="label"){
+    info.innerHTML = `
+      <div class="small">
+        Type directly in the blank boxes. <b>Check page</b> marks boxes:
+        <span class="pill" style="border-color:rgba(35,197,94,0.35);color:var(--good)">green=right</span>
+        <span class="pill" style="border-color:rgba(239,68,68,0.35);color:var(--bad)">red=wrong</span>
+        <span class="pill" style="border-color:rgba(245,158,11,0.35);color:var(--warn)">orange=no key</span><br/>
+        <b>Mode:</b> <span class="pill" style="border-color:rgba(255,255,255,0.14)">${ui.gradeMode==="strict" ? "Strict placement" : "OpenStax terms"}</span>
+        (click <b>Mode</b> in the header to switch).<br/>
+        <span style="opacity:.85">OpenStax terms mode checks whether your answer is a valid term for the page (unordered). Strict placement mode uses your per-box Answer Key.</span>
+      </div>`;
+  } else if(ui.view==="study"){
+    info.innerHTML = `<div class="small">Use this as a checklist between labeling sets. Aim for recall, not rereading.</div>`;
+  } else {
+    info.innerHTML = `<div class="small">Build your answer key here so the site can grade you.</div>`;
+  }
+}
+
+function renderSidebar(){
+  const list = document.getElementById("pageList");
+  list.innerHTML = "";
+  DATA.pages.forEach((p, idx) => {
+    const div = document.createElement("div");
+    div.className = "item" + (idx===ui.pageIndex ? " active":"");
+    const filled = p.boxes.reduce((acc,_,bIdx)=> acc + ((answers[keyFor(p.file,bIdx)]||"").trim() ? 1 : 0), 0);
+    const keyed = p.boxes.reduce((acc,_,bIdx)=> acc + ((key[keyFor(p.file,bIdx)]||"").trim() ? 1 : 0), 0);
+    div.innerHTML = `<div><b>Page ${idx+1}</b></div>
+                     <div class="meta"><span>${p.file}</span><span>${filled}/${p.boxes.length} filled • ${keyed} keyed</span></div>`;
+    div.onclick = () => { ui.pageIndex = idx; ui.lastGrade = null; saveAll(); render(); };
+    list.appendChild(div);
+  });
+}
+
+function renderSectionVisibility(){
+  document.getElementById("sectionLabel").classList.toggle("hidden", ui.view!=="label");
+  document.getElementById("sectionStudy").classList.toggle("hidden", ui.view!=="study");
+  document.getElementById("sectionKey").classList.toggle("hidden", ui.view!=="key");
+}
+
+function renderScorePill(text, kind){
+  const pill = document.getElementById("scorePill");
+  pill.textContent = text;
+  pill.style.borderColor = kind==="good" ? "rgba(35,197,94,0.35)" :
+                           kind==="bad"  ? "rgba(239,68,68,0.35)" :
+                           kind==="warn" ? "rgba(245,158,11,0.35)" :
+                           "rgba(255,255,255,0.14)";
+  pill.style.color = kind==="good" ? "var(--good)" :
+                     kind==="bad"  ? "var(--bad)" :
+                     kind==="warn" ? "var(--warn)" :
+                     "var(--muted)";
+}
+
+function clearGradingMarks(){
+  const fig = document.getElementById("figure");
+  fig.querySelectorAll("input.boxInput").forEach(inp => {
+    inp.classList.remove("good","bad","unk");
+  });
+}
+
+function renderFigure(){
+  const fig = document.getElementById("figure");
+  fig.innerHTML = "";
+  const page = DATA.pages[ui.pageIndex];
+
+  const img = document.createElement("img");
+  img.src = "images/" + page.file;
+  img.alt = page.file;
+  fig.appendChild(img);
+
+  img.onload = () => {
+    page.boxes.forEach((b, idx) => {
+      const inp = document.createElement("input");
+      inp.type = "text";
+      inp.className = "boxInput";
+      inp.autocomplete = "off";
+      inp.spellcheck = false;
+      inp.placeholder = String(idx+1);
+
+      inp.style.left = (100 * b.x / page.w) + "%";
+      inp.style.top  = (100 * b.y / page.h) + "%";
+      inp.style.width = (100 * b.w / page.w) + "%";
+      inp.style.height = (100 * b.h / page.h) + "%";
+
+      const k = keyFor(page.file, idx);
+      inp.value = answers[k] || "";
+      inp.oninput = (e) => {
+        answers[k] = e.target.value;
+        saveAll();
+        renderSidebar();
+      };
+
+      inp.onkeydown = (e) => {
+        if(e.key === "Enter"){
+          e.preventDefault();
+          const inputs = [...fig.querySelectorAll("input.boxInput")];
+          const i = inputs.indexOf(inp);
+          if(i >= 0 && i < inputs.length-1) inputs[i+1].focus();
+        }
+      };
+
+      fig.appendChild(inp);
+    });
+
+    // Apply focus mode visibility
+    if(ui.focus){
+      fig.querySelectorAll("input.boxInput").forEach(inp => {
+        inp.style.background = "rgba(0,0,0,0.55)";
+      });
+    }
+
+    // Re-apply grading marks if we just graded this page
+    if(ui.lastGrade && ui.lastGrade.pageFile === page.file){
+      applyGradeMarksForPage(page.file);
+    }
+  };
+}
+
+function applyGradeMarksForPage(pageFile){
+  const fig = document.getElementById("figure");
+  const page = DATA.pages[ui.pageIndex];
+  clearGradingMarks();
+  page.boxes.forEach((_, idx) => {
+    const result = gradeOne(pageFile, idx);
+    const inp = fig.querySelectorAll("input.boxInput")[idx];
+    if(!inp) return;
+    inp.classList.add(result.status);
+  });
+}
+
+function checkPage(){
+  const page = DATA.pages[ui.pageIndex];
+  let correct=0, total=page.boxes.length, keyed=0;
+  for(let i=0;i<total;i++) {
+    const k = keyFor(page.file, i);
+    if((key[k]||"").trim()) keyed++;
+    const r = gradeOne(page.file, i);
+    if(r.correct) correct++;
+  }
+  ui.lastGrade = { pageFile: page.file, correct, total };
+  saveAll();
+  applyGradeMarksForPage(page.file);
+
+  if(keyed===0) renderScorePill("No key for this page yet (orange boxes)", "warn");
+  else renderScorePill(`Page score: ${correct}/${total} (${pct(correct,total)}%) • Keyed: ${keyed}/${total}`, correct===total ? "good" : "bad");
+}
+
+function checkAll(){
+  let correct=0, total=0, keyed=0;
+  DATA.pages.forEach(p => {
+    p.boxes.forEach((_, i) => {
+      total++;
+      const k = keyFor(p.file, i);
+      if((key[k]||"").trim()) keyed++;
+      const r = gradeOne(p.file, i);
+      if(r.correct) correct++;
+    });
+  });
+  if(keyed===0) renderScorePill("No key loaded yet (go to Answer Key tab)", "warn");
+  else renderScorePill(`All pages: ${correct}/${total} (${pct(correct,total)}%) • Keyed: ${keyed}/${total}`, correct===total ? "good" : "bad");
+}
+
+function renderKeyEditor(){
+  const root = document.getElementById("keyEditor");
+  const page = DATA.pages[ui.pageIndex];
+  root.innerHTML = `
+    <div class="hint"><b>Editing key for:</b> Page ${ui.pageIndex+1} • ${page.file} • ${page.boxes.length} blanks</div>
+    <table class="keyTable" aria-label="answer key editor"></table>
+  `;
+  const table = root.querySelector("table");
+  for(let i=0;i<page.boxes.length;i++){
+    const tr = document.createElement("tr");
+    const td1 = document.createElement("td");
+    td1.style.width="60px";
+    td1.innerHTML = `<span class="pill">#${i+1}</span>`;
+    const td2 = document.createElement("td");
+    const k = keyFor(page.file, i);
+    td2.innerHTML = `<input class="keyInp" placeholder="Correct label (use | for multiple)" value="${(key[k]||"").replace(/"/g,"&quot;")}"/>`;
+    const inp = td2.querySelector("input");
+    inp.oninput = (e)=>{ key[k]=e.target.value; saveAll(); renderSidebar(); };
+    tr.appendChild(td1); tr.appendChild(td2);
+    table.appendChild(tr);
+  }
+}
+
+function clearPage(){
+  const page = DATA.pages[ui.pageIndex];
+  page.boxes.forEach((_, i) => {
+    delete answers[keyFor(page.file,i)];
+  });
+  ui.lastGrade = null;
+  saveAll();
+  render();
+}
+
+function clearAll(){
+  answers = {};
+  ui.lastGrade = null;
+  saveAll();
+  render();
+}
+
+function exportAnswers(){
+  document.getElementById("transferBox").value = JSON.stringify(answers, null, 2);
+}
+
+function importAnswers(){
+  const raw = document.getElementById("transferBox").value.trim();
+  if(!raw) return;
+  const obj = safeParse(raw, null);
+  if(!obj) return alert("That doesn't look like valid JSON.");
+  answers = obj;
+  ui.lastGrade = null;
+  saveAll();
+  render();
+}
+
+function exportKey(){
+  document.getElementById("keyTransferBox").value = JSON.stringify(key, null, 2);
+}
+
+function importKey(){
+  const raw = document.getElementById("keyTransferBox").value.trim();
+  if(!raw) return;
+  const obj = safeParse(raw, null);
+  if(!obj) return alert("That doesn't look like valid JSON.");
+  key = obj;
+  saveAll();
+  render();
+}
+
+function copyPageAnswersToKey(){
+  const page = DATA.pages[ui.pageIndex];
+  page.boxes.forEach((_, i)=>{
+    const k = keyFor(page.file,i);
+    const v = (answers[k]||"").trim();
+    if(v) key[k]=v;
+  });
+  saveAll();
+  render();
+}
+
+function copyAllAnswersToKey(){
+  Object.keys(answers).forEach(k=>{
+    const v=(answers[k]||"").trim();
+    if(v) key[k]=v;
+  });
+  saveAll();
+  render();
+}
+
+function render(){
+  renderHeaderTabs();
+  renderAsideInfo();
+  renderSectionVisibility();
+  renderSidebar();
+
+  document.getElementById("modeBtn").textContent = `Mode: ${ui.gradeMode==="strict" ? "Strict placement" : "OpenStax terms"}`;
+
+  const page = DATA.pages[ui.pageIndex];
+  document.getElementById("focusBtn").textContent = `Focus mode: ${ui.focus ? "ON" : "OFF"}`;
+
+  if(ui.view==="label"){
+    renderFigure();
+    if(!ui.lastGrade) renderScorePill("Not graded yet", "none");
+  } else if(ui.view==="key"){
+    renderKeyEditor();
+  } else {
+    // study view doesn't need figure
+    document.getElementById("figure").innerHTML = "";
+  }
+}
+
+function bindUI(){
+  document.getElementById("tabLabel").onclick = ()=>setView("label");
+  document.getElementById("tabStudy").onclick = ()=>setView("study");
+  document.getElementById("tabKey").onclick = ()=>setView("key");
+
+  document.getElementById("prevBtn").onclick = ()=>{ ui.pageIndex = (ui.pageIndex - 1 + DATA.pages.length) % DATA.pages.length; ui.lastGrade=null; saveAll(); render(); };
+  document.getElementById("nextBtn").onclick = ()=>{ ui.pageIndex = (ui.pageIndex + 1) % DATA.pages.length; ui.lastGrade=null; saveAll(); render(); };
+
+  document.getElementById("clearPageBtn").onclick = clearPage;
+  document.getElementById("clearAllBtn").onclick = ()=>{ if(confirm("Clear ALL pages?")) clearAll(); };
+
+  document.getElementById("focusBtn").onclick = ()=>{ ui.focus = !ui.focus; saveAll(); render(); };
+
+  document.getElementById("checkPageBtn").onclick = ()=>{ if(ui.view!=="label") setView("label"); checkPage(); };
+  document.getElementById("checkAllBtn").onclick = ()=>{ if(ui.view!=="label") setView("label"); checkAll(); };
+
+  document.getElementById("modeBtn").onclick = ()=>{
+    ui.gradeMode = (ui.gradeMode === "strict") ? "terms" : "strict";
+    ui.lastGrade = null;
+    saveAll();
+    render();
+  };
+
+  document.getElementById("exportAnsBtn").onclick = exportAnswers;
+  document.getElementById("importAnsBtn").onclick = importAnswers;
+
+  document.getElementById("exportKeyBtn").onclick = exportKey;
+  document.getElementById("importKeyBtn").onclick = importKey;
+
+  document.getElementById("copyPageToKeyBtn").onclick = copyPageAnswersToKey;
+  document.getElementById("copyAllToKeyBtn").onclick = copyAllAnswersToKey;
+
+  // keyboard shortcuts
+  document.addEventListener("keydown", (e)=>{
+    if(e.ctrlKey || e.metaKey){
+      if(e.key.toLowerCase()==="k"){ e.preventDefault(); setView("key"); }
+      if(e.key.toLowerCase()==="l"){ e.preventDefault(); setView("label"); }
+      if(e.key.toLowerCase()==="s"){ e.preventDefault(); setView("study"); }
+    }
+  });
+}
+
+loadAll();
+bindUI();
+render();
+</script>
+</body>
+</html>

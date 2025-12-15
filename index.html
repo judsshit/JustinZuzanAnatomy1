@@ -920,40 +920,40 @@ render();
 
 // Page-specific term banks (unordered). Each string may include synonyms separated by "|".
 const TERMS_BY_PAGE = [
-  // 1) Tibia
-  ["tibia","medial condyle","lateral condyle","intercondylar eminence|intercondylar tubercles","tibial tuberosity","anterior crest|anterior border","shaft|body","medial malleolus","fibular notch","soleal line","nutrient foramen"],
-  // 2) Skull (right lateral)
-  ["frontal bone|frontal","parietal bone|parietal","temporal bone|temporal","occipital bone|occipital","sphenoid bone|sphenoid","zygomatic bone|zygoma","maxilla|maxillary bone","mandible","nasal bone|nasal","lacrimal bone|lacrimal","external acoustic meatus|ear canal","mastoid process","styloid process","zygomatic arch","coronal suture","squamous suture","lambdoid suture","orbit|orbital cavity"],
+  // 1) Tibia & fibula (anterior/posterior)
+  ["tibia","fibula","medial condyle","lateral condyle","intercondylar eminence|intercondylar tubercles","tibial tuberosity","anterior crest|anterior border","shaft|body","medial malleolus","fibular head|head of fibula","lateral malleolus","fibular notch","interosseous border","interosseous membrane","soleal line","nutrient foramen"],
+  // 2) Skull (right lateral view)
+  ["frontal bone|frontal","parietal bone|parietal","temporal bone|temporal","occipital bone|occipital","sphenoid bone|sphenoid","zygomatic bone|zygoma","maxilla|maxillary bone","mandible","nasal bone|nasal","lacrimal bone|lacrimal","palatine bone|palatine","external acoustic meatus|ear canal","mastoid process","styloid process","zygomatic arch","coronal suture","squamous suture","lambdoid suture","orbit|orbital cavity","supraorbital foramen","infraorbital foramen","mental foramen","alveolar process","ramus of mandible|ramus","condylar process|mandibular condyle","coronoid process","temporomandibular joint|tmj"],
   // 3) Scapula (R anterior/posterior)
-  ["scapula","acromion","coracoid process","glenoid cavity|glenoid fossa","scapular spine|spine of scapula","supraspinous fossa","infraspinous fossa","subscapular fossa","medial border|vertebral border","lateral border|axillary border","superior border","superior angle","inferior angle"],
+  ["scapula","acromion","coracoid process","glenoid cavity|glenoid fossa","scapular spine|spine of scapula","supraspinous fossa","infraspinous fossa","subscapular fossa","medial border|vertebral border","lateral border|axillary border","superior border","superior angle","inferior angle","neck of scapula|scapular neck","supraglenoid tubercle","infraglenoid tubercle"],
   // 4) Sacrum & coccyx
-  ["sacrum","coccyx","base","apex","sacral promontory","ala","auricular surface","anterior (ventral) sacral foramina|anterior sacral foramina","posterior (dorsal) sacral foramina|posterior sacral foramina","median sacral crest","sacral canal","sacral hiatus"],
+  ["sacrum","coccyx","base","apex","sacral promontory","ala","auricular surface","anterior (ventral) sacral foramina|anterior sacral foramina","posterior (dorsal) sacral foramina|posterior sacral foramina","median sacral crest","sacral canal","sacral hiatus","sacral cornua","transverse ridges"],
   // 5) Foot (tarsals/metatarsals/phalanges)
-  ["talus","calcaneus","navicular","cuboid","medial cuneiform","intermediate cuneiform","lateral cuneiform","metatarsals|metatarsal bones","phalanges|phalanx","proximal phalanges","middle phalanges","distal phalanges","tarsals|tarsal bones"],
-  // 6) Pectoral girdle / clavicle
-  ["pectoral girdle","clavicle","scapula","sternal end|medial end","acromial end|lateral end","conoid tubercle","trapezoid line","subclavian groove","costal tuberosity"],
-  // 7) Thorax / sternum
-  ["sternum","manubrium","body of sternum|sternal body","xiphoid process","jugular notch","clavicular notch","sternal angle","costal cartilages","true ribs","false ribs","floating ribs","thoracic cage"],
-  // 8) Pelvis (whole)
-  ["pelvis","hip bone|coxal bone|os coxae","ilium","ischium","pubis","acetabulum","obturator foramen","sacrum","coccyx","iliac crest","pubic symphysis","anterior superior iliac spine|asis"],
+  ["tarsals|tarsal bones","talus","trochlea of talus|trochlea","calcaneus","calcaneal tuberosity","sustentaculum tali","navicular","cuboid","medial cuneiform","intermediate cuneiform","lateral cuneiform","metatarsals|metatarsal bones","metatarsal I|1st metatarsal","metatarsal II|2nd metatarsal","metatarsal III|3rd metatarsal","metatarsal IV|4th metatarsal","metatarsal V|5th metatarsal","phalanges|phalanx","proximal phalanges","middle phalanges","distal phalanges","proximal phalanx of hallux|proximal phalanx (big toe)","distal phalanx of hallux|distal phalanx (big toe)","medial malleolus (tibia)","lateral malleolus (fibula)","sesamoid bones","tarsometatarsal joint","metatarsophalangeal joint","interphalangeal joints","hindfoot","midfoot","forefoot"],
+  // 6) Pectoral girdle & clavicle
+  ["pectoral girdle","clavicle","scapula","acromion","sternal end|medial end","acromial end|lateral end","sternoclavicular joint","acromioclavicular joint","costoclavicular ligament","coracoclavicular ligament","subclavian groove","conoid tubercle","trapezoid line"],
+  // 7) Thorax / sternum / ribs
+  ["sternum","manubrium","body of sternum|sternal body","xiphoid process","jugular notch","clavicular notch","sternal angle","costal cartilages","true ribs (1\u20137)|true ribs","false ribs (8\u201312)|false ribs","floating ribs (11\u201312)|floating ribs","costal margin","thoracic cage","intercostal spaces"],
+  // 8) Pelvis (anterior)
+  ["pelvis","hip bone|coxal bone|os coxae","ilium","ischium","pubis","acetabulum","obturator foramen","sacrum","coccyx","iliac crest","pubic symphysis","anterior superior iliac spine|asis","anterior inferior iliac spine|aiis","ischial tuberosity"],
   // 9) Hip bone (lateral/medial views)
-  ["ilium","iliac crest","iliac fossa","auricular surface","anterior superior iliac spine|asis","anterior inferior iliac spine|aiis","posterior superior iliac spine|psis","posterior inferior iliac spine|piis","greater sciatic notch","ischial spine","ischial tuberosity","ischium","pubis","pubic tubercle","superior pubic ramus","inferior pubic ramus","obturator foramen","acetabulum"],
+  ["ilium","iliac crest","iliac fossa","auricular surface","anterior superior iliac spine|asis","anterior inferior iliac spine|aiis","posterior superior iliac spine|psis","posterior inferior iliac spine|piis","greater sciatic notch","ischial spine","ischial tuberosity","ischium","pubis","pubic tubercle","superior pubic ramus","inferior pubic ramus","obturator foramen","acetabulum","arcuate line","pubic arch"],
   // 10) Vertebral column regions
-  ["cervical vertebrae","thoracic vertebrae","lumbar vertebrae","sacrum","coccyx","vertebral column|spine","intervertebral discs"],
-  // 11) Skull (posterior)
-  ["parietal bone|parietal","occipital bone|occipital","temporal bone|temporal","lambdoid suture","sagittal suture","mastoid process","external occipital protuberance"],
+  ["vertebral column|spine","cervical vertebrae","thoracic vertebrae","lumbar vertebrae","sacrum","coccyx","intervertebral discs"],
+  // 11) Skull (posterior view)
+  ["parietal bone|parietal","occipital bone|occipital","temporal bone|temporal","lambdoid suture","sagittal suture","mastoid process","external occipital protuberance","superior nuchal line","occipitomastoid suture","parietal foramen","mastoid foramen","inion"],
   // 12) Humerus (ant/post)
-  ["humerus","head of humerus|head","anatomical neck","surgical neck","greater tubercle","lesser tubercle","intertubercular sulcus|bicipital groove","deltoid tuberosity","medial epicondyle","lateral epicondyle","capitulum","trochlea","olecranon fossa","coronoid fossa","radial fossa"],
-  // 13) Cervical vertebrae (atlas/axis/typical)
-  ["atlas|c1","axis|c2","dens|odontoid process","anterior arch","posterior arch","transverse foramen","superior articular facet","spinous process","vertebral foramen","body","transverse process"],
+  ["humerus","head of humerus|head","anatomical neck","surgical neck","greater tubercle","lesser tubercle","intertubercular sulcus|bicipital groove","deltoid tuberosity","shaft|body","medial epicondyle","lateral epicondyle","medial supracondylar ridge","lateral supracondylar ridge","capitulum","trochlea","olecranon fossa","coronoid fossa","radial fossa"],
+  // 13) Cervical vertebrae: typical + atlas + axis
+  ["typical cervical vertebra","vertebral body|body","vertebral foramen","spinous process","bifid spinous process|bifid spine","transverse process","transverse foramen","superior articular facet","inferior articular facet","pedicle","lamina","vertebral arch","intervertebral foramen","uncinate process|uncinate processes","atlas|c1","anterior arch","posterior arch","anterior tubercle","posterior tubercle","lateral mass","superior articular facet (atlas)","facet for dens|fovea dentis","transverse ligament of atlas|transverse ligament","axis|c2","dens|odontoid process","body of axis","superior articular facet (axis)","transverse process (axis)","spinous process (axis)"],
   // 14) Hand (carpals/metacarpals/phalanges)
-  ["carpals|carpal bones","scaphoid","lunate","triquetrum","pisiform","trapezium","trapezoid","capitate","hamate","metacarpals|metacarpal bones","phalanges|phalanx","proximal phalanges","middle phalanges","distal phalanges"],
+  ["hand","carpals|carpal bones","scaphoid","lunate","triquetrum","pisiform","trapezium","trapezoid","capitate","hamate","metacarpals|metacarpal bones","metacarpal I|1st metacarpal","metacarpal II|2nd metacarpal","metacarpal III|3rd metacarpal","metacarpal IV|4th metacarpal","metacarpal V|5th metacarpal","phalanges|phalanx","proximal phalanges","middle phalanges","distal phalanges","proximal phalanx (thumb)","distal phalanx (thumb)"],
   // 15) Radius & ulna
-  ["radius","ulna","olecranon","trochlear notch","coronoid process","head of radius|radial head","radial tuberosity","ulnar tuberosity","interosseous border","styloid process of radius|radial styloid process","styloid process of ulna|ulnar styloid process","ulnar notch"],
+  ["radius","ulna","olecranon","trochlear notch","coronoid process","radial notch (ulna)|radial notch","head of radius|radial head","neck of radius|radial neck","radial tuberosity","ulnar tuberosity","interosseous border","shaft|body","styloid process of radius|radial styloid process","styloid process of ulna|ulnar styloid process","ulnar notch (radius)|ulnar notch","head of ulna|ulnar head","distal radioulnar joint"],
   // 16) Typical vertebra (general landmarks)
-  ["vertebra","vertebral body|body","vertebral foramen","spinous process","transverse process","lamina","pedicle","superior articular process","inferior articular process","intervertebral disc"],
+  ["vertebra","vertebral body|body","vertebral foramen","vertebral arch","spinous process","transverse process","lamina","pedicle","superior articular process","inferior articular process","facet|articular facet","intervertebral disc","intervertebral foramen"],
   // 17) Femur
-  ["femur","head of femur|head","neck of femur|neck","greater trochanter","lesser trochanter","intertrochanteric line","intertrochanteric crest","linea aspera","medial condyle","lateral condyle","medial epicondyle","lateral epicondyle","patellar surface","intercondylar fossa","gluteal tuberosity"]
+  ["femur","head of femur|head","fovea capitis|fovea capitis femoris","neck of femur|neck","greater trochanter","lesser trochanter","intertrochanteric line","intertrochanteric crest","gluteal tuberosity","linea aspera","pectineal line","medial condyle","lateral condyle","medial epicondyle","lateral epicondyle","patellar surface","intercondylar fossa","medial supracondylar line","lateral supracondylar line","adductor tubercle","shaft|body","greater trochanteric fossa|trochanteric fossa","popliteal surface"]
 ];
 
 function norm(s){
